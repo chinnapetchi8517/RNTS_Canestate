@@ -6,8 +6,6 @@ import styles from './styles';
 import {colors} from 'react-native-swiper-flatlist/src/themes';
 
 const Otp: React.FC = () => {
-
- 
   return (
     <SafeAreaView>
       <View style={styles.wrapper}>

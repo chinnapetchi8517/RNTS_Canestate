@@ -42,12 +42,6 @@ const styles: Styles = StyleSheet.create({
     fontFamily: fonts.robotoRegular,
   },
   button: {
-    width: 312,
-    height: 46,
-    borderRadius: 27,
-    backgroundColor: colors.secondarycolor,
-    alignItems: 'center',
-    justifyContent: 'center',
     marginTop: 159,
     marginBottom: 40,
   },

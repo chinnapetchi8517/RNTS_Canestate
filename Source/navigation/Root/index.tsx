@@ -7,6 +7,7 @@ import Login from '../../screens/Login';
 import Otp from '../../screens/Otp';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
+import Bottomtab from '../Bottomtab';
 
 interface RootNavigatorProps {}
 
@@ -24,6 +25,8 @@ const RootNavigator: React.FC<RootNavigatorProps> = () => {
         <Root.Screen name={'Splash'} component={Splash} />
         <Root.Screen name={'Onboarding'} component={Onboarding} />
         <Root.Screen name={'Login'} component={Login} />
+        {/* <Root.Screen name={'Bottomtab'} component={Bottomtab} /> */}
+
         <Root.Screen
           options={{
             headerShown: true,

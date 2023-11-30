@@ -53,8 +53,8 @@ const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
             onPress={() => swiperRef.current.scrollBy(1)}
             bordered={true}
             size="extralarge"
-            text={'NEXT'}
-            buttonstyle={styles.button}
+            title={'NEXT'}
+            containerStyle={styles.button}
           />
         </View>
         <View style={styles.slider1}>
@@ -66,9 +66,8 @@ const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
           <AppButton
             onPress={() => swiperRef.current.scrollBy(1)}
             bordered={true}
-            size="extralarge"
-            text={'NEXT'}
-            buttonstyle={styles.button}
+            title={'NEXT'}
+            containerStyle={styles.button}
           />
         </View>
         <View style={styles.slider1}>
@@ -81,9 +80,8 @@ const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
           <AppButton
             onPress={() => swiperRef.current.scrollBy(1)}
             bordered={true}
-            size="extralarge"
-            text={'NEXT'}
-            buttonstyle={styles.button}
+            title={'NEXT'}
+            containerStyle={styles.button}
           />
         </View>
         <View style={styles.slider4}>
@@ -111,9 +109,8 @@ const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
           <AppButton
             onPress={() => navigation.navigate('Otp')}
             bordered={true}
-            size="extralarge"
-            text={'GET STARTED'}
-            buttonstyle={{
+            title={'GET STARTED'}
+            containerStyle={{
               ...styles.button,
               ...{marginTop: 42},
             }}
