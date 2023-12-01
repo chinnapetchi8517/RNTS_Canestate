@@ -20,7 +20,7 @@ export interface ButtonInterface
   bordered?: boolean;
 }
 
-export interface Radioprops {
+export interface AppSelectionComponentprops {
   containerStyle?: ViewStyle;
   disabled?: boolean;
   knobSize?: number;
@@ -28,8 +28,8 @@ export interface Radioprops {
   label?: string;
   labelStyle?: TextStyle;
   onValueChange?: any;
-  radioContainerStyle?: ViewStyle;
-  radioSubContainerStyle?: ViewStyle;
+  appSelectionContainerStyle?: ViewStyle;
+  appSelectionSubContainerStyle?: ViewStyle;
   textContainerStyle?: ViewStyle;
   thumbColor?: {false: string; true: string};
   trackColor?: {false: string; true: string};
@@ -39,22 +39,6 @@ export interface Radioprops {
   rightTextStyle?: TextStyle;
   options?: [];
   isMultiSelection?: boolean;
-}
-
-export interface SwitchProps {
-  containerStyle?: ViewStyle;
-  disabled?: boolean;
-  knobSize?: number;
-  knobStyle?: ViewStyle;
-  label?: string;
-  labelStyle?: TextStyle;
-  onValueChange?: any;
-  switchContainerStyle?: ViewStyle;
-  switchSubContainerStyle?: ViewStyle;
-  textContainerStyle?: ViewStyle;
-  thumbColor?: {false: string; true: string};
-  trackColor?: {false: string; true: string};
-  value?: boolean;
-  options?: [];
-  isMultiSelection?: boolean;
+  isCheck?: boolean;
+  isRadio?: boolean;
 }

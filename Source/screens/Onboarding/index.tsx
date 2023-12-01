@@ -5,9 +5,9 @@ import Swiper from 'react-native-swiper';
 import styles from './styles';
 import {Images} from '../../assets/Images';
 import AppButton from '../../components/AppButton';
-import Switch from '../../components/Switch';
 import CommonStyles, {margin} from '../../utils/CommonStyles';
-import RadioButton from '../../components/RadioButton';
+
+import AppSelectionComponent from '../../components/AppSelectionComponent';
 
 interface OnboardingProps {
   navigation: any;
@@ -37,28 +37,18 @@ const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
         translucent={true}
         backgroundColor={colors.white}
       />
-      <View style={{marginTop: 50}}>
-        {/* <RadioButton
+      <View style={{marginTop: 50, marginHorizontal: 20}}>
+        {/* <AppSelectionComponent
           options={['Option 1', 'Option 2', 'Option 3']}
-          isMultiSelection={true}
+          isMultiSelection={false}
           rightlabel={'Fixed'}
-          //isTextright={true}
+          isCheck={true}
+          //isRadio={true}
+          isTextright={true}
           disabled={false}
           containerStyle={margin(30, 8)}
           label={'ON'}
           onValueChange={handleSelection}
-          // value={ispagination}
-        /> */}
-        {/* <Switch
-          options={['Option 1', 'Option 2', 'Option 3']}
-          isMultiSelection={true}
-          rightlabel={'Fixed'}
-          //isTextright={true}
-          disabled={false}
-          containerStyle={margin(30, 8)}
-          label={'ON'}
-          onValueChange={handleSelection}
-          // value={ispagination}
         /> */}
       </View>
 
