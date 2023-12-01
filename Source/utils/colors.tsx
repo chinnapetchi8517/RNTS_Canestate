@@ -9,4 +9,9 @@ export const colors = {
   lightgrey: '#FAFAFA',
   placeholdetext: '#B8B6B6',
   textbalck: '#212121',
+  switchoncolor: '#2688D0',
+  switchoffcolor: '#7B7B7B',
+  radiooffcolor: '#767D84',
+  radioOncolor: '#FF7C00',
+  textblak: '#050505',
 };

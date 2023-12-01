@@ -5,6 +5,9 @@ import Swiper from 'react-native-swiper';
 import styles from './styles';
 import {Images} from '../../assets/Images';
 import AppButton from '../../components/AppButton';
+import Switch from '../../components/Switch';
+import CommonStyles, {margin} from '../../utils/CommonStyles';
+import RadioButton from '../../components/RadioButton';
 
 interface OnboardingProps {
   navigation: any;
@@ -23,7 +26,10 @@ const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
       setispagination(true);
     }
   };
-
+  const handleSelection = (selected: any) => {
+    console.log('Selected:', selected);
+    // Do something with the selected value(s)
+  };
   return (
     <>
       <StatusBar
@@ -31,7 +37,32 @@ const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
         translucent={true}
         backgroundColor={colors.white}
       />
-      <Swiper
+      <View style={{marginTop: 50}}>
+        {/* <RadioButton
+          options={['Option 1', 'Option 2', 'Option 3']}
+          isMultiSelection={true}
+          rightlabel={'Fixed'}
+          //isTextright={true}
+          disabled={false}
+          containerStyle={margin(30, 8)}
+          label={'ON'}
+          onValueChange={handleSelection}
+          // value={ispagination}
+        /> */}
+        {/* <Switch
+          options={['Option 1', 'Option 2', 'Option 3']}
+          isMultiSelection={true}
+          rightlabel={'Fixed'}
+          //isTextright={true}
+          disabled={false}
+          containerStyle={margin(30, 8)}
+          label={'ON'}
+          onValueChange={handleSelection}
+          // value={ispagination}
+        /> */}
+      </View>
+
+      {/* <Swiper
         loop={false}
         ref={swiperRef}
         showsPagination={ispagination}
@@ -116,7 +147,7 @@ const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
             }}
           />
         </View>
-      </Swiper>
+      </Swiper> */}
     </>
   );
 };
