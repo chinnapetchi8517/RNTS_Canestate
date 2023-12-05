@@ -12,6 +12,7 @@ import Notification from '../assets/icons/Notification.svg';
 import Payment from '../assets/icons/Payment.svg';
 import Profile from '../assets/icons/Profile.svg';
 import Tick from '../assets/icons/tick.svg';
+import Close from '../assets/icons/close.svg';
 export const Images = {
   Splash: Splash,
   Intro1: Intro1,
@@ -27,4 +28,5 @@ export const Images = {
   Payment,
   Profile,
   Tick,
+  Close,
 };

@@ -8,14 +8,17 @@ import AppButton from '../../components/AppButton';
 import CommonStyles, {margin} from '../../utils/CommonStyles';
 
 import AppSelectionComponent from '../../components/AppSelectionComponent';
-
+import TextAreaComponent from '../../components/TextareaComponent';
+import {AppModal} from '../../components/AppModal';
 interface OnboardingProps {
   navigation: any;
 }
 
 const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
   const [ind, setind] = useState<number>(0);
-  const [ispagination, setispagination] = useState<boolean>(true);
+  const [ispagination, setispagination] = useState<boolean>(false);
+  const [isInputFocus, setIsInputFocus] = useState(false);
+  const [inputValue, setInputValue] = useState('');
   const swiperRef = useRef<any>();
 
   const indexChanged = (index: number) => {
@@ -50,6 +53,21 @@ const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
           label={'ON'}
           onValueChange={handleSelection}
         /> */}
+        {/* <TextAreaComponent
+          isInputFocus={isInputFocus}
+          setIsInputFocus={setIsInputFocus}
+          value={inputValue}
+          setInputValue={setInputValue}
+        /> */}
+        <Button
+          title={'button'}
+          onPress={() => setispagination(!ispagination)}></Button>
+        <AppModal
+          isSubmitbutton={true}
+          iscenter={false}
+          maxheight={530}
+          onDrop={() => setispagination(!ispagination)}
+          visible={ispagination}></AppModal>
       </View>
 
       {/* <Swiper

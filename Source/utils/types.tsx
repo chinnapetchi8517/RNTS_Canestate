@@ -42,3 +42,28 @@ export interface AppSelectionComponentprops {
   isCheck?: boolean;
   isRadio?: boolean;
 }
+
+export interface TextareaComponentprops {
+  isInputFocus?: boolean;
+  setIsInputFocus?: any;
+  value?: string;
+  setInputValue?: any;
+  editable?: boolean;
+  inputStyle?: ViewStyle;
+  placeholderText?: string;
+  containerStyle?: ViewStyle;
+}
+export interface Appmodalprops {
+  onDrop?: () => void;
+  visible?: boolean;
+  children?: any;
+  title?: string;
+  iscenter?: boolean;
+  maxheight?: number;
+  modalcontainerStyle?: ViewStyle;
+  isSubmitbutton?: boolean;
+  buttonText?: string;
+  btnSize?: string;
+  isheader?: boolean;
+  headericon?: boolean;
+}

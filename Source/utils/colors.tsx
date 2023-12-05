@@ -14,4 +14,7 @@ export const colors = {
   radiooffcolor: '#767D84',
   radioOncolor: '#FF7C00',
   textblak: '#050505',
+  textareaBg: '#FAFAFA',
+  inputcolor: '#212121',
+  placeholder: '#B8B6B6',
 };
