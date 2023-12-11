@@ -44,6 +44,7 @@ const styles: Styles = StyleSheet.create({
   button: {
     marginTop: 159,
     marginBottom: 40,
+    backgroundColor: colors.radioOncolor,
   },
   buttonText: {
     color: colors.white,

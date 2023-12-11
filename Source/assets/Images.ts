@@ -13,6 +13,9 @@ import Payment from '../assets/icons/Payment.svg';
 import Profile from '../assets/icons/Profile.svg';
 import Tick from '../assets/icons/tick.svg';
 import Close from '../assets/icons/close.svg';
+import ProfileEdit from '../assets/icons/profileEdit.svg';
+import LoginProfile from '../assets/icons/loginprofile.svg';
+import Google from '../assets/icons/google.svg';
 export const Images = {
   Splash: Splash,
   Intro1: Intro1,
@@ -29,4 +32,7 @@ export const Images = {
   Profile,
   Tick,
   Close,
+  ProfileEdit,
+  LoginProfile,
+  Google,
 };

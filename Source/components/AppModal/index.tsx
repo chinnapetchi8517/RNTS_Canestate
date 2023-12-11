@@ -26,8 +26,6 @@ export const AppModal: FC<Appmodalprops> = ({
   buttonText = '',
   modalcontainerStyle,
   btnSize = '',
-  isheader = false,
-  headericon = false,
 }) => {
   return (
     <Modal
@@ -55,10 +53,6 @@ export const AppModal: FC<Appmodalprops> = ({
           },
           modalcontainerStyle,
         ]}>
-        <View style={styles.headerView}>
-          <Text style={styles.headerText}>{title}</Text>
-          <Images.Close />
-        </View>
         {children}
         {isSubmitbutton ? (
           <View style={styles.bottomButtonContainer}>

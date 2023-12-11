@@ -19,25 +19,25 @@ const TextAreaComponent: FC<TextareaComponentprops> = ({
   inputStyle = {},
   placeholderText = '',
   containerStyle = {},
+  maxHeight,
 }) => {
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={[styles.textAreaContainer, containerStyle]}>
-        <TextInput
-          editable={editable}
-          multiline={true}
-          style={[styles.textInput, inputStyle]}
-          textAlignVertical="top"
-          value={value}
-          onChangeText={text => setInputValue(text)}
-          onFocus={() => setIsInputFocus(true)}
-          onBlur={() => setIsInputFocus(false)}
-          maxLength={250}
-          placeholderTextColor={colors.placeholder}
-          placeholder={placeholderText}
-        />
-      </View>
-    </TouchableWithoutFeedback>
+    <View style={[styles.textAreaContainer, containerStyle]}>
+      <TextInput
+        editable={editable}
+        multiline={true}
+        style={[styles.textInput, {height: maxHeight}, inputStyle]}
+        textAlignVertical="top"
+        value={value}
+        onChangeText={text => setInputValue(text)}
+        // onFocus={() => setIsInputFocus(true)}
+        // onBlur={() => setIsInputFocus(false)}
+
+        maxLength={250}
+        placeholderTextColor={colors.placeholder}
+        placeholder={placeholderText}
+      />
+    </View>
   );
 };
 export default TextAreaComponent;

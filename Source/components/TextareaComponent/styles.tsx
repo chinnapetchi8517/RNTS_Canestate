@@ -5,6 +5,7 @@ import {colors} from '../../utils/colors';
 const styles = StyleSheet.create({
   textAreaContainer: {
     marginTop: 12,
+    borderRadius: 10,
   },
   textInput: {
     borderRadius: 10,

@@ -8,11 +8,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   textContainer: {
-    flex: 0.8,
     justifyContent: 'center',
   },
   appSelectionContainer: {
-    flex: 0.2,
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
@@ -26,7 +24,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: fonts.robotoMedium,
     fontWeight: '400',
-    textTransform: 'capitalize',
+    textTransform: 'none',
     color: colors.textbalck,
     marginHorizontal: 12,
   },

@@ -1,146 +1,166 @@
-import React, {FC} from 'react';
-import {
-  Alert,
-  Animated,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {CurvedBottomBarExpo} from 'react-native-curved-bottom-bar';
-import {Images} from '../../assets/Images';
-import {NavigationContainer} from '@react-navigation/native';
+import React from 'react';
+import {BottomFabBar} from 'rn-wave-bottom-bar';
 import Home from '../../screens/Home/Home';
 import More from '../../screens/More';
-
-interface ScreenProps {
-  name: string;
-  position: string;
-  component: FC;
-}
-
-const Bottomtab: FC = () => {
-  const _renderIcon = (routeName: string, selectedTab: string) => {
-    let icon = '';
-
-    switch (routeName) {
-      case 'title1':
-        icon = 'ios-home-outline';
-        break;
-      case 'title2':
-        icon = 'settings-outline';
-        break;
-    }
-
-    return (
-      <Images.Home fillcolor={routeName === selectedTab ? 'black' : 'gray'} />
-    );
-  };
-
-  const renderTabBar = ({routeName, selectedTab, navigate}: any) => {
-    return (
-      <TouchableOpacity
-        onPress={() => navigate(routeName)}
-        style={styles.tabbarItem}>
-        {_renderIcon(routeName, selectedTab)}
-      </TouchableOpacity>
-    );
-  };
+import Notification from '../../screens/Notification';
+import Payment from '../../screens/Payment/indexs';
+import Profile from '../../screens/Profile';
+import {colors} from '../../utils/colors';
+import styles from './styles';
+import {Images} from '../../assets/Images';
+import {
+  createBottomTabNavigator,
+  BottomTabBar,
+} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
+import {View} from 'react-native';
+//import {BottomFabBar} from './BottomTab';
+const Bottomtab: React.FC = () => {
+  const Tab = createBottomTabNavigator();
 
   return (
-    <NavigationContainer>
-      <CurvedBottomBarExpo.Navigator
-        type="DOWN"
-        style={styles.bottomBar}
-        shadowStyle={styles.shawdow}
-        height={55}
-        circleWidth={50}
-        bgColor="white"
-        initialRouteName="title1"
-        borderTopLeftRight
-        renderCircle={({selectedTab, navigate}: any) => (
-          <Animated.View style={styles.btnCircleUp}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => Alert.alert('Click Action')}>
-              <Images.Home fillcolor="gray" />
-            </TouchableOpacity>
-          </Animated.View>
-        )}
-        tabBar={renderTabBar}>
-        <CurvedBottomBarExpo.Screen
-          name="title1"
-          position="LEFT"
-          component={() => <Home navigation={undefined} />}
+    <Tab.Navigator
+      screenOptions={{
+        // tabBarBackground: () => (
+        //   <LinearGradient
+        //     start={{x: 0.0, y: 0.9}}
+        //     end={{x: 0.5, y: 9.0}}
+        //     locations={[0, 0.3, 0.8]}
+        //     colors={[
+        //       colors.primarycolor,
+        //       colors.secondarycolor,
+        //       colors.secondarycolor,
+        //     ]}
+        //     style={{
+        //       height: 70,
+        //       borderTopLeftRadius: 20,
+        //       borderTopRightRadius: 20,
+        //     }}
+        //   />
+        // ),
+        tabBarStyle: {
+          position: 'absolute',
+          height: 70,
+          //backgroundColor: 'red',
+          borderTopLeftRadius: 15,
+          borderTopRightRadius: 15,
+        },
+
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: colors.primarycolor,
+        tabBarActiveBackgroundColor: colors.primarycolor,
+        //'linear-gradient(14deg, rgb(226, 88, 45) 34.23%, rgb(236, 158, 47) 104.35%, rgba(217, 217, 217, 0.00) 104.35%)',
+        // tabBarInactiveBackgroundColor: 'red',
+      }}
+      tabBar={(props: any) => (
+        <BottomFabBar
+          mode={'default'}
+          isRtl={false}
+          // Add Shadow for active tab bar button
+          focusedButtonStyle={{
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 7,
+            },
+            shadowOpacity: 0.41,
+            shadowRadius: 9.11,
+            elevation: 14,
+            background: 'linear-gradient(45deg, #FF0000, #0000FF)',
+          }}
+          bottomBarContainerStyle={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            // backgroundColor: 'white',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          }}
+          {...props}
         />
-        <CurvedBottomBarExpo.Screen
-          name="title2"
-          component={() => <More navigation={undefined} />}
-          position="RIGHT"
-        />
-      </CurvedBottomBarExpo.Navigator>
-    </NavigationContainer>
+      )}>
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({}) => (
+            <Images.Home
+              width={32}
+              height={32}
+              marginTop={12}
+              marginBottom={8}
+              //fill={focused ? colors.primarycolor : colors.grey}
+            />
+          ),
+        }}
+        name="Home"
+        component={Home}
+      />
+      <Tab.Screen
+        name="More"
+        options={{
+          tabBarIcon: ({}) => (
+            <Images.More
+              width={32}
+              height={32}
+              marginTop={12}
+              marginBottom={8}
+              //fill={focused ? colors.primarycolor : colors.grey}
+            />
+          ),
+        }}
+        component={More}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({}) => (
+            <Images.Payment
+              width={32}
+              height={32}
+              marginTop={12}
+              marginBottom={8}
+              //fill={focused ? colors.primarycolor : colors.grey}
+            />
+          ),
+          //tabBarActiveBackgroundColor: '#45014A',
+          //tabBarActiveTintColor: 'purple',
+        }}
+        name="Payment"
+        component={Payment}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({}) => (
+            <Images.Notification
+              width={32}
+              height={32}
+              marginTop={12}
+              marginBottom={8}
+              //fill={focused ? colors.primarycolor : colors.grey}
+            />
+          ),
+        }}
+        name="Notification"
+        component={Notification}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({}) => (
+            <Images.Profile
+              width={32}
+              height={32}
+              marginTop={12}
+              marginBottom={8}
+              //fill={focused ? colors.primarycolor : colors.grey}
+            />
+          ),
+        }}
+        name="Profile"
+        component={Profile}
+      />
+    </Tab.Navigator>
   );
 };
-
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  shawdow: {
-    shadowColor: '#DDDDDD',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 5,
-  },
-  button: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  bottomBar: {},
-  btnCircleUp: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#E8E8E8',
-    bottom: 30,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 1,
-  },
-  imgCircle: {
-    width: 30,
-    height: 30,
-    tintColor: 'gray',
-  },
-  tabbarItem: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  img: {
-    width: 30,
-    height: 30,
-  },
-  screen1: {
-    flex: 1,
-    backgroundColor: '#BFEFFF',
-  },
-  screen2: {
-    flex: 1,
-    backgroundColor: '#FFEBCD',
-  },
-});
 
 export default Bottomtab;
 
@@ -157,6 +177,7 @@ export default Bottomtab;
 // import {Images} from '../../assets/Images';
 // import LinearGradient from 'react-native-linear-gradient';
 // import Animated, {FadeInUp, FadeOutDown, Layout} from 'react-native-reanimated';
+//import {bgcolor} from '../../utils/CommonStyles';
 
 // const Tab = createBottomTabNavigator();
 
@@ -321,3 +342,171 @@ export default Bottomtab;
 // };
 
 // export default TabNavigator;
+// import React from 'react';
+// import {BottomFabBar} from 'rn-wave-bottom-bar';
+// import Home from '../../screens/Home/Home';
+// import More from '../../screens/More';
+// import Notification from '../../screens/Notification';
+// import Payment from '../../screens/Payment/indexs';
+// import Profile from '../../screens/Profile';
+// import {colors} from '../../utils/colors';
+// import styles from './styles';
+// import {Images} from '../../assets/Images';
+// import {
+//   createBottomTabNavigator,
+//   BottomTabBar,
+// } from '@react-navigation/bottom-tabs';
+// import {NavigationContainer} from '@react-navigation/native';
+// import LinearGradient from 'react-native-linear-gradient';
+// import {View} from 'react-native';
+// const Bottomtab: React.FC = () => {
+//   const Tab = createBottomTabNavigator();
+
+//   return (
+//     <Tab.Navigator
+//       screenOptions={{
+//         tabBarBackground: () => (
+//           <LinearGradient
+//             start={{x: 0.0, y: 0.9}}
+//             end={{x: 0.5, y: 9.0}}
+//             locations={[0, 0.3, 0.8]}
+//             colors={[
+//               colors.primarycolor,
+//               colors.secondarycolor,
+//               colors.secondarycolor,
+//             ]}
+//             style={{
+//               height: 70,
+//               borderTopLeftRadius: 20,
+//               borderTopRightRadius: 20,
+//             }}
+//           />
+//         ),
+//         tabBarStyle: {
+//           position: 'absolute',
+//           height: 55,
+//           //backgroundColor: 'red',
+//           borderTopLeftRadius: 15,
+//           borderTopRightRadius: 15,
+//         },
+
+//         tabBarShowLabel: false,
+//         //  tabBarComponent: (props:any) => { return (
+//         //    <LinearGradient colors={['#f5f5f5', '#DBDBDB']}
+//         //    start={[1, 0]} end={[0, 0]}>
+//         //    <BottomTabBar {...props} style={{backgroundColor: 'transparent' }} />
+//         //     </LinearGradient> ) },
+//         tabBarActiveTintColor: colors.secondarycolor,
+//         //tabBarActiveBackgroundColor: colors.primarycolor,
+//         // tabBarInactiveBackgroundColor: 'red',
+//       }}
+//       tabBar={(props: any) => (
+//         <BottomFabBar
+//           mode={'default'}
+//           isRtl={false}
+//           // Add Shadow for active tab bar button
+//           focusedButtonStyle={{
+//             shadowColor: '#000',
+//             shadowOffset: {
+//               width: 0,
+//               height: 7,
+//             },
+//             shadowOpacity: 0.41,
+//             shadowRadius: 9.11,
+//             elevation: 14,
+//             background: 'linear-gradient(45deg, #FF0000, #0000FF)',
+//           }}
+//           bottomBarContainerStyle={{
+//             position: 'absolute',
+//             bottom: 0,
+//             left: 0,
+//             right: 0,
+//             // backgroundColor: 'white',
+//             borderTopLeftRadius: 20,
+//             borderTopRightRadius: 20,
+//           }}
+//           {...props}
+//         />
+//       )}>
+//       <Tab.Screen
+//         options={{
+//           tabBarIcon: ({}) => (
+//             <Images.Home
+//               width={32}
+//               height={32}
+//               marginTop={12}
+//               marginBottom={8}
+//               //fill={focused ? colors.primarycolor : colors.grey}
+//             />
+//           ),
+//         }}
+//         name="Home"
+//         component={Home}
+//       />
+//       <Tab.Screen
+//         name="More"
+//         options={{
+//           tabBarIcon: ({}) => (
+//             <Images.More
+//               width={32}
+//               height={32}
+//               marginTop={12}
+//               marginBottom={8}
+//               //fill={focused ? colors.primarycolor : colors.grey}
+//             />
+//           ),
+//         }}
+//         component={More}
+//       />
+//       <Tab.Screen
+//         options={{
+//           tabBarIcon: ({}) => (
+//             <Images.Payment
+//               width={32}
+//               height={32}
+//               marginTop={12}
+//               marginBottom={8}
+//               //fill={focused ? colors.primarycolor : colors.grey}
+//             />
+//           ),
+//           //tabBarActiveBackgroundColor: '#45014A',
+//           //tabBarActiveTintColor: 'purple',
+//         }}
+//         name="Payment"
+//         component={Payment}
+//       />
+//       <Tab.Screen
+//         options={{
+//           tabBarIcon: ({}) => (
+//             <Images.Notification
+//               width={32}
+//               height={32}
+//               marginTop={12}
+//               marginBottom={8}
+//               //fill={focused ? colors.primarycolor : colors.grey}
+//             />
+//           ),
+//         }}
+//         name="Notification"
+//         component={Notification}
+//       />
+//       <Tab.Screen
+//         options={{
+//           tabBarIcon: ({}) => (
+//             <Images.Profile
+//               width={32}
+//               height={32}
+//               marginTop={12}
+//               marginBottom={8}
+//               //fill={focused ? colors.primarycolor : colors.grey}
+//             />
+//           ),
+//         }}
+//         name="Profile"
+//         component={Profile}
+//       />
+//     </Tab.Navigator>
+//   );
+// };
+
+// export default Bottomtab;

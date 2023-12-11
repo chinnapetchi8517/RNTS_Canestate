@@ -37,6 +37,9 @@ export default App;
 // import {Images} from './Source/assets/Images';
 // import {colors} from './Source/utils/colors';
 // import LinearGradient from 'react-native-linear-gradient';
+// import More from './Source/screens/More/index';
+// import Svg, {Circle, Ellipse, Path} from 'react-native-svg';
+
 // // ------------------------------------------------------------------
 
 // const Tab = createBottomTabNavigator();
@@ -54,23 +57,11 @@ export default App;
 //           screenOptions={{
 //             headerShown: false,
 
-//             tabBarActiveTintColor: '#fff',
-//             tabBarStyle: {position: 'absolute', height: 70},
+//             //tabBarActiveTintColor: '#fff',
+//             tabBarActiveBackgroundColor: 'transparent',
+//             tabBarInactiveTintColor: 'white',
+//             //tabBarStyle: {position: 'absolute', height: 70},
 //             tabBarShowLabel: false,
-
-//             tabBarBackground: () => (
-//               <LinearGradient
-//                 start={{x: 0.0, y: 0.9}}
-//                 end={{x: 0.5, y: 9.0}}
-//                 locations={[0, 0.3, 0.8]}
-//                 colors={[colors.primarycolor, colors.secondarycolor]}
-//                 style={{
-//                   height: 70,
-//                   borderTopLeftRadius: 20,
-//                   borderTopRightRadius: 20,
-//                 }}
-//               />
-//             ),
 //           }}
 //           tabBar={props => <AnimatedTabBar {...props} />}>
 //           <Tab.Screen
@@ -88,7 +79,7 @@ export default App;
 //             options={{
 //               // @ts-ignore
 //               tabBarIcon: ({ref}) => (
-//                 <Images.Home marginTop={19} marginBottom={18}></Images.Home>
+//                 <Images.More marginTop={19} marginBottom={18}></Images.More>
 //               ),
 //             }}
 //             component={PlaceholderScreen}
@@ -98,7 +89,9 @@ export default App;
 //             options={{
 //               // @ts-ignore
 //               tabBarIcon: ({ref}) => (
-//                 <Images.Home marginTop={19} marginBottom={18}></Images.Home>
+//                 <Images.Notification
+//                   marginTop={19}
+//                   marginBottom={18}></Images.Notification>
 //               ),
 //             }}
 //             component={PlaceholderScreen}
@@ -108,7 +101,23 @@ export default App;
 //             options={{
 //               // @ts-ignore
 //               tabBarIcon: ({ref}) => (
-//                 <Images.Home marginTop={19} marginBottom={18}></Images.Home>
+//                 <Images.Payment
+//                   marginTop={19}
+//                   fillcolor={'white'}
+//                   marginBottom={18}></Images.Payment>
+//               ),
+//             }}
+//             component={PlaceholderScreen}
+//           />
+//           <Tab.Screen
+//             name="GHGH"
+//             options={{
+//               // @ts-ignore
+//               tabBarIcon: ({ref}) => (
+//                 <Images.Profile
+//                   marginTop={19}
+//                   marginBottom={18}
+//                   fillcolor={'white'}></Images.Profile>
 //               ),
 //             }}
 //             component={PlaceholderScreen}
@@ -122,7 +131,7 @@ export default App;
 // // ------------------------------------------------------------------
 
 // const PlaceholderScreen = () => {
-//   return <View style={{flex: 1, backgroundColor: '#604AE6'}} />;
+//   return <View style={{flex: 1, backgroundColor: 'white'}} />;
 // };
 
 // // ------------------------------------------------------------------
@@ -168,39 +177,59 @@ export default App;
 //       transform: [{translateX: withTiming(xOffset.value, {duration: 650})}],
 //     };
 //   });
+//   var pathX = '357';
+//   var pathY = '675';
+//   var pathA = '689';
+//   var pathB = '706';
 
 //   return (
-//     <View style={[styles.tabBar, {paddingBottom: bottom}]}>
-//       <AnimatedSvg
-//         width={110}
-//         height={60}
-//         viewBox="0 0 110 60"
-//         style={[styles.activeBackground, animatedStyles]}>
-//         <Image
-//           source={require('./Source/assets/icons/bottomcurve.png')}></Image>
-//         {/* <Path
-//           //fill="#604AE6"
-//           d="M20 0H0c11.046 0 20 8.953 20 20v5c0 19.33 15.67 35 35 35s35-15.67 35-35v-5c0-11.045 8.954-20 20-20H20z"
-//         /> */}
-//       </AnimatedSvg>
-
-//       <View style={styles.tabBarContainer}>
-//         {routes.map((route, index) => {
-//           const active = index === activeIndex;
-//           const {options} = descriptors[route.key];
-
-//           return (
-//             <TabBarComponent
-//               key={route.key}
-//               active={active}
-//               options={options}
-//               onLayout={e => handleLayout(e, index)}
-//               onPress={() => navigation.navigate(route.name)}
+//     <LinearGradient
+//       start={{x: 0.0, y: 0.9}}
+//       end={{x: 0.5, y: 9.0}}
+//       locations={[0, 0.8]}
+//       colors={['#E2582D', '#EC9E2F']}
+//       style={{
+//         height: 70,
+//         borderTopLeftRadius: 20,
+//         borderTopRightRadius: 20,
+//         backgroundColor: 'rgba(217, 217, 217, 0.00)',
+//       }}>
+//       <View style={{paddingBottom: bottom}}>
+//         <AnimatedSvg
+//           // width={1000}
+//           // height={80}
+//           // viewBox="0 0 1000 60"
+//           style={[styles.activeBackground, animatedStyles]}>
+//           <Svg width={10} height={30}>
+//             <Path
+//               fill="white"
+//               d="M20 0H0c11.046 0 20 3.953 20 20v5c0 19.33 15.67 35 35 35s35-15.67 35-35v-5c0-11.045 8.954-20 20-20H20z"
 //             />
-//           );
-//         })}
+//           </Svg>
+
+//           {/* <Path
+//             fill="white"
+//             d="M20 0H0c11.046 0 20 3.953 20 20v5c0 19.33 15.67 35 35 35s35-15.67 35-35v-5c0-11.045 8.954-20 20-20H20z"
+//           /> */}
+//         </AnimatedSvg>
+//         <View style={styles.tabBarContainer}>
+//           {routes.map((route, index) => {
+//             const active = index === activeIndex;
+//             const {options} = descriptors[route.key];
+
+//             return (
+//               <TabBarComponent
+//                 key={route.key}
+//                 active={active}
+//                 options={options}
+//                 onLayout={e => handleLayout(e, index)}
+//                 onPress={() => navigation.navigate(route.name)}
+//               />
+//             );
+//           })}
+//         </View>
 //       </View>
-//     </View>
+//     </LinearGradient>
 //   );
 // };
 
@@ -249,11 +278,30 @@ export default App;
 
 //   return (
 //     <Pressable onPress={onPress} onLayout={onLayout} style={styles.component}>
+//       {active ? (
+//         <LinearGradient
+//           start={{x: 0.0, y: 0.9}}
+//           end={{x: 0.5, y: 9.0}}
+//           locations={[0, 0.8]}
+//           colors={['#E2582D', '#EC9E2F']}
+//           style={styles.componentCircle}>
+//           <Animated.View
+//             style={[animatedComponentCircleStyles]}></Animated.View>
+//         </LinearGradient>
+//       ) : null}
 //       <Animated.View
-//         style={[styles.componentCircle, animatedComponentCircleStyles]}
-//       />
-//       <Animated.View
-//         style={[styles.iconContainer, animatedIconContainerStyles]}>
+//         style={[
+//           styles.iconContainer,
+//           // {
+//           //   bottom: active ? 48 : 0,
+//           //   right: active ? 17 : 0,
+//           //   top: active ? 0 : 15,
+//           //   left: active ? 20 : 0,
+//           //   alignItems: 'center',
+//           //   justifyContent: 'center',
+//           // },
+//           animatedIconContainerStyles,
+//         ]}>
 //         {/* @ts-ignore */}
 //         {options.tabBarIcon ? options.tabBarIcon({ref}) : <Text>?</Text>}
 //       </Animated.View>
@@ -267,15 +315,15 @@ export default App;
 //   tabBar: {
 //     backgroundColor: 'red',
 //     height: 70,
-//     borderTopRightRadius: 27,
-//     borderTopLeftRadius: 27,
 //   },
 //   activeBackground: {
 //     position: 'absolute',
+//     //bottom: 10,
 //   },
 //   tabBarContainer: {
 //     flexDirection: 'row',
-//     justifyContent: 'space-evenly',
+//     justifyContent: 'space-around',
+//     alignItems: 'center',
 //   },
 //   component: {
 //     height: 60,
@@ -284,13 +332,13 @@ export default App;
 //     marginTop: -5,
 //   },
 //   componentCircle: {
-//     width: 60,
-//     height: 60,
-//     borderRadius: 30,
+//     width: 55,
+//     height: 55,
+//     borderRadius: 55 / 2,
 //     alignItems: 'center',
 //     justifyContent: 'center',
-//     backgroundColor: 'green',
-//     bottom: 20,
+//     backgroundColor: 'red',
+//     //bottom: 20,
 //     shadowColor: '#000',
 //     shadowOffset: {
 //       width: 0,
@@ -302,16 +350,13 @@ export default App;
 //   },
 //   iconContainer: {
 //     position: 'absolute',
-//     top: 0,
-//     left: 0,
-//     right: 0,
-//     bottom: 30,
+
 //     justifyContent: 'center',
 //     alignItems: 'center',
 //   },
 //   icon: {
-//     height: 36,
-//     width: 36,
+//     height: 16,
+//     width: 16,
 //   },
 // });
 

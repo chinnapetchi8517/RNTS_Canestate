@@ -10,6 +10,7 @@ import CommonStyles, {margin} from '../../utils/CommonStyles';
 import AppSelectionComponent from '../../components/AppSelectionComponent';
 import TextAreaComponent from '../../components/TextareaComponent';
 import {AppModal} from '../../components/AppModal';
+import CardView from '../../components/CardView';
 interface OnboardingProps {
   navigation: any;
 }
@@ -40,37 +41,7 @@ const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
         translucent={true}
         backgroundColor={colors.white}
       />
-      <View style={{marginTop: 50, marginHorizontal: 20}}>
-        {/* <AppSelectionComponent
-          options={['Option 1', 'Option 2', 'Option 3']}
-          isMultiSelection={false}
-          rightlabel={'Fixed'}
-          isCheck={true}
-          //isRadio={true}
-          isTextright={true}
-          disabled={false}
-          containerStyle={margin(30, 8)}
-          label={'ON'}
-          onValueChange={handleSelection}
-        /> */}
-        {/* <TextAreaComponent
-          isInputFocus={isInputFocus}
-          setIsInputFocus={setIsInputFocus}
-          value={inputValue}
-          setInputValue={setInputValue}
-        /> */}
-        <Button
-          title={'button'}
-          onPress={() => setispagination(!ispagination)}></Button>
-        <AppModal
-          isSubmitbutton={true}
-          iscenter={false}
-          maxheight={530}
-          onDrop={() => setispagination(!ispagination)}
-          visible={ispagination}></AppModal>
-      </View>
-
-      {/* <Swiper
+      <Swiper
         loop={false}
         ref={swiperRef}
         showsPagination={ispagination}
@@ -155,7 +126,38 @@ const Onboarding: React.FC<OnboardingProps> = ({navigation}) => {
             }}
           />
         </View>
-      </Swiper> */}
+      </Swiper>
+      {/* <View style={{marginTop: 50, marginHorizontal: 20}}> */}
+
+      {/* <AppSelectionComponent
+          options={['Option 1', 'Option 2', 'Option 3']}
+          isMultiSelection={false}
+          rightlabel={'Fixed'}
+          isCheck={true}
+          //isRadio={true}
+          isTextright={true}
+          disabled={false}
+          containerStyle={margin(30, 8)}
+          label={'ON'}
+          onValueChange={handleSelection}
+        /> */}
+      {/* <TextAreaComponent
+          isInputFocus={isInputFocus}
+          setIsInputFocus={setIsInputFocus}
+          value={inputValue}
+          setInputValue={setInputValue}
+        /> */}
+      {/* <Button
+          title={'button'}
+          onPress={() => setispagination(!ispagination)}></Button>
+        <AppModal
+          isSubmitbutton={true}
+          iscenter={false}
+          maxheight={530}
+          onDrop={() => setispagination(!ispagination)}
+          visible={ispagination}></AppModal> */}
+      {/* <CardView></CardView> */}
+      {/* </View> */}
     </>
   );
 };

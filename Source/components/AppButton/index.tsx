@@ -13,6 +13,7 @@ import {ButtonInterface} from '../../utils/types';
 import {colors} from '../../utils/colors';
 import styles from './styles';
 import CommonStyles, {flex} from '../../utils/CommonStyles';
+import {Images} from '../../assets/Images';
 
 const AppButton: FC<ButtonInterface> = ({
   containerStyle = null,
@@ -24,6 +25,7 @@ const AppButton: FC<ButtonInterface> = ({
   bordered,
   size = '',
   textStyle = null,
+  icon = false,
 }) => {
   // Button Variables
 
@@ -76,7 +78,7 @@ const AppButton: FC<ButtonInterface> = ({
     case 'solid':
     default:
       customContainerStyle = {
-        backgroundColor: colors.secondarycolor,
+        backgroundColor: colors.radioOncolor,
         borderColor: colors.secondarycolor,
         borderRadius: bordered ? 27 : 5,
         borderWidth: 0.5,
@@ -96,6 +98,7 @@ const AppButton: FC<ButtonInterface> = ({
             <ActivityIndicator size="small" color={colors.white} />
           ) : (
             <View style={[CommonStyles.CenterAlign, CommonStyles.Row]}>
+              {icon ? <Images.Google /> : null}
               <Text style={[styles.textStyles, customTextStyle, textStyle]}>
                 {title}
               </Text>

@@ -24,8 +24,24 @@ const RootNavigator: React.FC<RootNavigatorProps> = () => {
         }}>
         <Root.Screen name={'Splash'} component={Splash} />
         <Root.Screen name={'Onboarding'} component={Onboarding} />
-        <Root.Screen name={'Login'} component={Login} />
-        {/* <Root.Screen name={'Bottomtab'} component={Bottomtab} /> */}
+        <Root.Screen
+          options={{
+            headerShown: true,
+            title: 'My Account',
+            headerStyle: {
+              backgroundColor: colors.white,
+            },
+            headerTintColor: colors.black,
+            headerTitleStyle: {
+              fontWeight: '700',
+              fontFamily: fonts.robotoBold,
+              fontSize: 16,
+            },
+          }}
+          name={'Login'}
+          component={Login}
+        />
+        <Root.Screen name={'Bottomtab'} component={Bottomtab} />
 
         <Root.Screen
           options={{

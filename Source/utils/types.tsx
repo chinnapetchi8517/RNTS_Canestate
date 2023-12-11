@@ -18,6 +18,7 @@ export interface ButtonInterface
   textStyle?: null | StyleProp<TextStyle>;
   touchable?: boolean;
   bordered?: boolean;
+  icon?: boolean;
 }
 
 export interface AppSelectionComponentprops {
@@ -52,6 +53,7 @@ export interface TextareaComponentprops {
   inputStyle?: ViewStyle;
   placeholderText?: string;
   containerStyle?: ViewStyle;
+  maxHeight?: number;
 }
 export interface Appmodalprops {
   onDrop?: () => void;
@@ -66,4 +68,13 @@ export interface Appmodalprops {
   btnSize?: string;
   isheader?: boolean;
   headericon?: boolean;
+}
+export interface Cardviewprops {
+  maxHeight?: number;
+  children?: any;
+  containerStyle?: ViewStyle;
+  isCardsquare?: false;
+  carviewStyles?: ViewStyle;
+  ismulticolor?: boolean;
+  customRightcornerStyle?: ViewStyle;
 }

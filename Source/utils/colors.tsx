@@ -17,4 +17,5 @@ export const colors = {
   textareaBg: '#FAFAFA',
   inputcolor: '#212121',
   placeholder: '#B8B6B6',
+  otpbg: '#FFF7EB',
 };

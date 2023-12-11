@@ -2,67 +2,36 @@ import {StyleSheet} from 'react-native';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
 const styles = StyleSheet.create({
-  wrapper: {height: '100%', width: '100%', backgroundColor: colors.white},
-  slider1: {
-    justifyContent: 'center',
+  wrapper: {height: '100%', width: '100%'},
+  profilecontainer: {
+    marginTop: 4,
+    marginHorizontal: 0,
+    borderRadius: 0,
+    marginVertical: 0,
+    marginBottom: 0,
+  },
+  card: {
+    borderRadius: 0,
+  },
+  profileborderStyle: {
+    width: 139,
+    height: 139,
+    borderRadius: 139 / 2,
+    borderColor: 'rgba(0, 0, 0, 0.25)',
+    borderWidth: 2,
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  text: {
-    color: colors.black,
-    fontSize: 24,
-    marginTop: 75,
-    fontWeight: 'bold',
-    marginHorizontal: 35,
-    fontWeight: '600',
-    //fontFamily: fonts.interBold,
+  Editprofile: {position: 'absolute', right: 0, bottom: 0},
+  centerStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 25,
   },
-  subtext: {
-    // width: 320,
-    // height: 38,
-    color: colors.grey,
-    fontSize: 16,
+  inputcontainerStyle: {
     marginTop: 24,
-    fontWeight: 'normal',
-    lineHeight: 27,
-    textAlign: 'center',
-    marginHorizontal: 35,
-    fontFamily: fonts.robotoRegular,
+    borderRadius: 10,
   },
-  button: {
-    width: 312,
-    height: 46,
-    borderRadius: 27,
-    backgroundColor: colors.secondarycolor,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 159,
-    marginBottom: 40,
-  },
-  buttonText: {
-    color: colors.white,
-    fontSize: 14,
-    fontWeight: '700',
-    lineHeight: 27,
-  },
-  dotstyle: {
-    backgroundColor: colors.secondarycolor2,
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginLeft: 3,
-    marginRight: 3,
-    marginTop: 3,
-    marginBottom: 118,
-  },
-  activedot: {
-    backgroundColor: colors.primarycolor,
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginLeft: 3,
-    marginRight: 3,
-    marginTop: 3,
-    marginBottom: 118,
-  },
+  viewStyle: {marginHorizontal: 24},
 });
 export default styles;
