@@ -42,8 +42,8 @@ const styles: Styles = StyleSheet.create({
     fontFamily: fonts.robotoRegular,
   },
   button: {
-    marginTop: 159,
-    marginBottom: 40,
+    //marginTop: 159,
+    marginBottom: 20,
     backgroundColor: colors.radioOncolor,
   },
   buttonText: {
@@ -60,7 +60,7 @@ const styles: Styles = StyleSheet.create({
     marginLeft: 3,
     marginRight: 3,
     marginTop: 3,
-    marginBottom: 118,
+    marginBottom: 50,
   },
   activedot: {
     backgroundColor: colors.primarycolor,
@@ -70,14 +70,14 @@ const styles: Styles = StyleSheet.create({
     marginLeft: 3,
     marginRight: 3,
     marginTop: 3,
-    marginBottom: 118,
+    marginBottom: 50,
   },
   inputview: {
     width: 342,
     height: 50,
     borderRadius: 10,
     backgroundColor: colors.lightgrey,
-    marginTop: 30,
+    marginBottom: 30,
     flexDirection: 'row',
     alignItems: 'center',
   },

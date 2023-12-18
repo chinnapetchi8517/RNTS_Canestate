@@ -7,11 +7,12 @@ const styles = StyleSheet.create({
   CardViewcontainer: {
     marginTop: 13,
     marginBottom: 12,
+
+    backgroundColor: colors.white,
   },
   CardViewretangular: {
     borderRadius: 15,
     height: 120,
-    backgroundColor: colors.white,
     shadowColor: 'rgba(160, 160, 160, 0.08)',
   },
   CardViewsquare: {
@@ -19,7 +20,11 @@ const styles = StyleSheet.create({
     height: 157,
     borderRadius: 15,
     backgroundColor: colors.white,
-    shadowColor: 'rgba(160, 160, 160, 0.08)',
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 6,
+    shadowOpacity: 0.26,
+    elevation: 8,
   },
   CardViewwith_colorborder: {
     width: 338,

@@ -20,6 +20,8 @@ const TextAreaComponent: FC<TextareaComponentprops> = ({
   placeholderText = '',
   containerStyle = {},
   maxHeight,
+  iscolorBlack = false,
+  props,
 }) => {
   return (
     <View style={[styles.textAreaContainer, containerStyle]}>
@@ -34,8 +36,11 @@ const TextAreaComponent: FC<TextareaComponentprops> = ({
         // onBlur={() => setIsInputFocus(false)}
 
         maxLength={250}
-        placeholderTextColor={colors.placeholder}
+        placeholderTextColor={
+          iscolorBlack ? colors.textbalck : colors.placeholder
+        }
         placeholder={placeholderText}
+        {...props}
       />
     </View>
   );

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Text, View, ViewStyle} from 'react-native';
+import {Pressable, Text, View, ViewStyle} from 'react-native';
 import styles from './styles';
 import {Cardviewprops} from '../../utils/types';
 
@@ -9,12 +9,15 @@ const CardView: FC<Cardviewprops> = ({
   containerStyle,
   isCardsquare = false,
   carviewStyles,
-  ismulticolor = true,
+  ismulticolor = false,
   customRightcornerStyle,
+  onPress,
 }) => {
   return (
     <>
-      <View style={[styles.CardViewcontainer, containerStyle]}>
+      <Pressable
+        onPress={onPress}
+        style={[styles.CardViewcontainer, containerStyle]}>
         {ismulticolor ? (
           <View style={{flexDirection: 'row'}}>
             <View
@@ -42,7 +45,7 @@ const CardView: FC<Cardviewprops> = ({
             {children}
           </View>
         )}
-      </View>
+      </Pressable>
     </>
   );
 };

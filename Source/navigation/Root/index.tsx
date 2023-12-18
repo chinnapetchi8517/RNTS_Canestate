@@ -8,6 +8,12 @@ import Otp from '../../screens/Otp';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
 import Bottomtab from '../Bottomtab';
+import Home from '../../screens/Home/Home';
+import {StyleSheet} from 'react-native';
+import Property_Onboarding from '../../screens/Property_Onboarding';
+import Confirm_Address from '../../screens/Property_Onboarding/ConfirmAddress';
+import Property_Information from '../../screens/Property_Onboarding/PropertyInformation';
+import PropertyNotes from '../../screens/Property_Onboarding/PropertyInformation/PropertyNotes';
 
 interface RootNavigatorProps {}
 
@@ -28,15 +34,9 @@ const RootNavigator: React.FC<RootNavigatorProps> = () => {
           options={{
             headerShown: true,
             title: 'My Account',
-            headerStyle: {
-              backgroundColor: colors.white,
-            },
+            headerStyle: styles.header,
             headerTintColor: colors.black,
-            headerTitleStyle: {
-              fontWeight: '700',
-              fontFamily: fonts.robotoBold,
-              fontSize: 16,
-            },
+            headerTitleStyle: styles.headertitle,
           }}
           name={'Login'}
           component={Login}
@@ -47,18 +47,56 @@ const RootNavigator: React.FC<RootNavigatorProps> = () => {
           options={{
             headerShown: true,
             title: 'OTP Verification',
-            headerStyle: {
-              backgroundColor: colors.white,
-            },
+            headerStyle: styles.header,
             headerTintColor: colors.black,
-            headerTitleStyle: {
-              fontWeight: '700',
-              fontFamily: fonts.robotoBold,
-              fontSize: 16,
-            },
+            headerTitleStyle: styles.headertitle,
           }}
           name={'Otp'}
           component={Otp}
+        />
+        <Root.Screen
+          options={{
+            headerShown: true,
+            title: 'Property Onboarding',
+            headerStyle: styles.header,
+            headerTintColor: colors.black,
+            headerTitleStyle: styles.headertitle,
+          }}
+          name={'Property_Onboarding'}
+          component={Property_Onboarding}
+        />
+        <Root.Screen
+          options={{
+            headerShown: true,
+            title: 'Confirm Address',
+            headerStyle: styles.header,
+            headerTintColor: colors.black,
+            headerTitleStyle: styles.headertitle,
+          }}
+          name={'Confirm_Address'}
+          component={Confirm_Address}
+        />
+        <Root.Screen
+          options={{
+            headerShown: true,
+            title: 'Property Information',
+            headerStyle: styles.header,
+            headerTintColor: colors.black,
+            headerTitleStyle: styles.headertitle,
+          }}
+          name={'Property_Information'}
+          component={Property_Information}
+        />
+        <Root.Screen
+          options={{
+            headerShown: true,
+            title: 'Property Rules & Guidelines',
+            headerStyle: styles.header,
+            headerTintColor: colors.black,
+            headerTitleStyle: styles.headertitle,
+          }}
+          name={'PropertyNotes'}
+          component={PropertyNotes}
         />
       </Root.Navigator>
     </NavigationContainer>
@@ -66,3 +104,13 @@ const RootNavigator: React.FC<RootNavigatorProps> = () => {
 };
 
 export default RootNavigator;
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: colors.white,
+  },
+  headertitle: {
+    fontWeight: '700',
+    fontFamily: fonts.robotoBold,
+    fontSize: 16,
+  },
+});

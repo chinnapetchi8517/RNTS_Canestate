@@ -2,6 +2,7 @@ import {ReactElement} from 'react';
 import {
   ButtonProps,
   StyleProp,
+  TextInputProps,
   TextStyle,
   TouchableOpacityProps,
   ViewStyle,
@@ -42,6 +43,7 @@ export interface AppSelectionComponentprops {
   isMultiSelection?: boolean;
   isCheck?: boolean;
   isRadio?: boolean;
+  children?: any;
 }
 
 export interface TextareaComponentprops {
@@ -50,10 +52,12 @@ export interface TextareaComponentprops {
   value?: string;
   setInputValue?: any;
   editable?: boolean;
-  inputStyle?: ViewStyle;
+  inputStyle?: TextStyle;
   placeholderText?: string;
   containerStyle?: ViewStyle;
   maxHeight?: number;
+  props?: TextInputProps;
+  iscolorBlack?: boolean;
 }
 export interface Appmodalprops {
   onDrop?: () => void;
@@ -70,11 +74,15 @@ export interface Appmodalprops {
   headericon?: boolean;
 }
 export interface Cardviewprops {
-  maxHeight?: number;
+  maxHeight?: any;
   children?: any;
   containerStyle?: ViewStyle;
-  isCardsquare?: false;
+  isCardsquare?: boolean;
   carviewStyles?: ViewStyle;
   ismulticolor?: boolean;
   customRightcornerStyle?: ViewStyle;
+  onPress?: any;
+}
+export interface screenProps {
+  navigation: any;
 }

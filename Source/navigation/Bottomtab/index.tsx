@@ -21,6 +21,7 @@ const Bottomtab: React.FC = () => {
 
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       screenOptions={{
         // tabBarBackground: () => (
         //   <LinearGradient
@@ -39,6 +40,7 @@ const Bottomtab: React.FC = () => {
         //     }}
         //   />
         // ),
+        headerShown: false,
         tabBarStyle: {
           position: 'absolute',
           height: 70,
@@ -89,7 +91,6 @@ const Bottomtab: React.FC = () => {
               height={32}
               marginTop={12}
               marginBottom={8}
-              //fill={focused ? colors.primarycolor : colors.grey}
             />
           ),
         }}

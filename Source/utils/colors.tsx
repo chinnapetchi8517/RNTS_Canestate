@@ -1,7 +1,9 @@
+import {bgcolor} from './CommonStyles';
 export const colors = {
   primarycolor: `#FE5B10`,
   secondarycolor: '#FF7E0F',
   secondarycolor2: '#E9CDC5',
+  bgprimarycolor: '#FFEFDF',
   lightwhite: '#FFFDFC',
   white: '#FFF',
   black: '#000',
@@ -18,4 +20,10 @@ export const colors = {
   inputcolor: '#212121',
   placeholder: '#B8B6B6',
   otpbg: '#FFF7EB',
+  blue: '#3599FB',
+  darkgradient: '#FB693C',
+  lightgradient: '#FB9115',
+  greyText: '#C1C1C1',
+  terms: '#4042E2',
+  cardtext: '#3E3F3E',
 };

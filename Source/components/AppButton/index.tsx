@@ -33,7 +33,7 @@ const AppButton: FC<ButtonInterface> = ({
   let customContainerStyle: StyleProp<ViewStyle>,
     customTextStyle: StyleProp<TextStyle>;
   const small: number = 88;
-  const medium: number = 157;
+  const medium: number = 127;
   const large: number = 244;
   const extralarge: number = 312;
 

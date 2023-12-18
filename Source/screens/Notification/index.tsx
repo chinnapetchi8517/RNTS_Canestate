@@ -1,12 +1,9 @@
 import React, {useState, useRef} from 'react';
 import {View, Text, Button, StatusBar, TextInput} from 'react-native';
 import {colors} from '../../utils/colors';
+import {screenProps} from '../../utils/types';
 
-interface NotificationProps {
-  navigation: any;
-}
-
-const Notification: React.FC<NotificationProps> = ({navigation}) => {
+const Notification: React.FC<screenProps> = ({navigation}) => {
   return (
     <>
       <StatusBar

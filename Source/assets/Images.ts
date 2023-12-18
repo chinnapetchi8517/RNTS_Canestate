@@ -1,4 +1,4 @@
-import Splash from '../assets/icons/splash.svg';
+import Splash from '../assets/icons/splash';
 import Intro1 from '../assets/icons/intro1.svg';
 import Intro2 from '../assets/icons/intro2.svg';
 import Intro3 from '../assets/icons/intro3.svg';
@@ -16,6 +16,17 @@ import Close from '../assets/icons/close.svg';
 import ProfileEdit from '../assets/icons/profileEdit.svg';
 import LoginProfile from '../assets/icons/loginprofile.svg';
 import Google from '../assets/icons/google.svg';
+import Blue_dot from '../assets/icons/blue_dot.svg';
+import Red_dot from '../assets/icons/red_dot.svg';
+import CurrentLocation from '../assets/icons/currentlocation.svg';
+import Homeaddress from '../assets/icons/homeaddress.svg';
+import Apartments from '../assets/icons/apartments.svg';
+import Commercial from '../assets/icons/commercial.svg';
+import Studio from '../assets/icons/studio.svg';
+import Suite from '../assets/icons/suite.svg';
+import Townhouse from '../assets/icons/townhouse.svg';
+import Counter_plus from '../assets/icons/counter_plus.svg';
+import Counter_minus from '../assets/icons/counter_minus.svg';
 export const Images = {
   Splash: Splash,
   Intro1: Intro1,
@@ -35,4 +46,20 @@ export const Images = {
   ProfileEdit,
   LoginProfile,
   Google,
+  Blue_dot,
+  Red_dot,
+  CurrentLocation,
+  Homeaddress,
+  Suite,
+  Studio,
+  Townhouse,
+  Commercial,
+  Apartments: Apartments,
+  Counter_minus,
+  Counter_plus,
+
+  //::::::::::::Png
+  HomeImg: require('../assets/pngImage/homeimg.png'),
+  Homedollar: require('../assets/pngImage/home_dollar.png'),
+  Address: require('../assets/pngImage/address.png'),
 };

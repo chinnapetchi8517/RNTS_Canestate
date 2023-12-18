@@ -35,13 +35,14 @@ const AppSelectionComponent: FC<AppSelectionComponentprops> = ({
     false: isCheck || isRadio ? colors.radiooffcolor : colors.switchoffcolor,
     true: isCheck || isRadio ? colors.radioOncolor : colors.switchoncolor,
   },
+  children,
 }) => {
   const [selectedOption, setSelectedOption] = useState([]);
 
   const knobsize = isRadio ? 12 : knobSize;
 
   const handleOptionPress = (option: never) => {
-    if (isMultiSelection && isRadio === false) {
+    if (isMultiSelection) {
       //  multi-selection
       const newSelection = selectedOption.includes(option)
         ? selectedOption.filter(item => item !== option)
@@ -50,17 +51,120 @@ const AppSelectionComponent: FC<AppSelectionComponentprops> = ({
       onValueChange(newSelection);
     } else {
       // Single-selection
+      console.log(option, 'option');
+
       setSelectedOption([option]);
       onValueChange(option);
     }
   };
   return (
     <>
-      {options.map((option, index) => (
-        <View key={index} style={[Styles.container, containerStyle]}>
+      {options.length != 0 ? (
+        <>
+          {options.map((option, index) => (
+            <View key={index} style={[Styles.container, containerStyle]}>
+              {isTextright ? null : (
+                <View style={[Styles.textContainer, textContainerStyle]}>
+                  <Text style={[styles.labelstyle, labelStyle]}>{option}</Text>
+                </View>
+              )}
+              <View
+                style={[
+                  Styles.appSelectionContainer,
+                  appSelectionContainerStyle,
+                ]}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <TouchableWithoutFeedback
+                    disabled={disabled}
+                    onPress={() => {
+                      handleOptionPress(option);
+                    }}>
+                    <View
+                      style={[
+                        isCheck
+                          ? Styles.checkSubContainer
+                          : isRadio
+                          ? Styles.radioSubContainer
+                          : Styles.switchSubContainer,
+                        {
+                          borderColor: selectedOption.includes(option)
+                            ? trackColor.true
+                            : trackColor.false,
+                          borderRadius: isCheck ? 4 : knobsize,
+                        },
+                        isRadio === false && {
+                          backgroundColor: selectedOption.includes(option)
+                            ? thumbColor.true
+                            : thumbColor.false,
+                        },
+                        appSelectionSubContainerStyle,
+                      ]}>
+                      {selectedOption.includes(option) && isCheck ? (
+                        <Images.Tick></Images.Tick>
+                      ) : selectedOption.includes(option) && isRadio ? (
+                        <View
+                          style={[
+                            {
+                              width: knobsize,
+                              height: knobsize,
+                              alignSelf: 'center',
+                              borderRadius: 12 / 2,
+                              backgroundColor: selectedOption.includes(option)
+                                ? trackColor.true
+                                : trackColor.false,
+                            },
+                            knobStyle,
+                          ]}
+                        />
+                      ) : (
+                        isCheck === false &&
+                        isRadio === false && (
+                          <View style={{flexDirection: 'row'}}>
+                            {selectedOption.includes(option) && (
+                              <Text style={styles.switchText}>{'Yes'}</Text>
+                            )}
+                            <>{console.log(selectedOption.includes(option))}</>
+                            <View
+                              style={[
+                                {
+                                  width: knobsize,
+                                  height: knobsize,
+                                  alignSelf: selectedOption.includes(option)
+                                    ? 'flex-end'
+                                    : 'flex-start',
+                                  borderRadius: 18 / 2,
+                                  backgroundColor: colors.white,
+                                },
+                                knobStyle,
+                              ]}
+                            />
+                            {selectedOption.includes(option) == false && (
+                              <Text style={[styles.switchText, margin(8, 0)]}>
+                                {'No'}
+                              </Text>
+                            )}
+                          </View>
+                        )
+                      )}
+                    </View>
+                  </TouchableWithoutFeedback>
+                  {isTextright ? (
+                    <Text style={[styles.rightText, rightTextStyle]}>
+                      {option}
+                    </Text>
+                  ) : null}
+                </View>
+              </View>
+            </View>
+          ))}
+        </>
+      ) : (
+        <View style={[Styles.container, containerStyle]}>
           {isTextright ? null : (
             <View style={[Styles.textContainer, textContainerStyle]}>
-              <Text style={[styles.labelstyle, labelStyle]}>{option}</Text>
+              <>
+                <>{children}</>
+              </>
             </View>
           )}
           <View
@@ -69,7 +173,8 @@ const AppSelectionComponent: FC<AppSelectionComponentprops> = ({
               <TouchableWithoutFeedback
                 disabled={disabled}
                 onPress={() => {
-                  handleOptionPress(option);
+                  onValueChange();
+                  // handleOptionPress(option);
                 }}>
                 <View
                   style={[
@@ -79,21 +184,19 @@ const AppSelectionComponent: FC<AppSelectionComponentprops> = ({
                       ? Styles.radioSubContainer
                       : Styles.switchSubContainer,
                     {
-                      borderColor: selectedOption.includes(option)
-                        ? trackColor.true
-                        : trackColor.false,
+                      borderColor: value ? trackColor.true : trackColor.false,
                       borderRadius: isCheck ? 4 : knobsize,
                     },
                     isRadio === false && {
-                      backgroundColor: selectedOption.includes(option)
+                      backgroundColor: value
                         ? thumbColor.true
                         : thumbColor.false,
                     },
                     appSelectionSubContainerStyle,
                   ]}>
-                  {selectedOption.includes(option) && isCheck ? (
+                  {value && isCheck ? (
                     <Images.Tick></Images.Tick>
-                  ) : selectedOption.includes(option) && isRadio ? (
+                  ) : value && isRadio ? (
                     <View
                       style={[
                         {
@@ -101,7 +204,7 @@ const AppSelectionComponent: FC<AppSelectionComponentprops> = ({
                           height: knobsize,
                           alignSelf: 'center',
                           borderRadius: 12 / 2,
-                          backgroundColor: selectedOption.includes(option)
+                          backgroundColor: value
                             ? trackColor.true
                             : trackColor.false,
                         },
@@ -112,24 +215,23 @@ const AppSelectionComponent: FC<AppSelectionComponentprops> = ({
                     isCheck === false &&
                     isRadio === false && (
                       <View style={{flexDirection: 'row'}}>
-                        {selectedOption.includes(option) && (
+                        {value && (
                           <Text style={styles.switchText}>{'Yes'}</Text>
                         )}
+
                         <View
                           style={[
                             {
                               width: knobsize,
                               height: knobsize,
-                              alignSelf: selectedOption.includes(option)
-                                ? 'flex-end'
-                                : 'flex-start',
+                              alignSelf: value ? 'flex-end' : 'flex-start',
                               borderRadius: 18 / 2,
                               backgroundColor: colors.white,
                             },
                             knobStyle,
                           ]}
                         />
-                        {selectedOption.includes(option) == false && (
+                        {value == false && (
                           <Text style={[styles.switchText, margin(8, 0)]}>
                             {'No'}
                           </Text>
@@ -139,13 +241,12 @@ const AppSelectionComponent: FC<AppSelectionComponentprops> = ({
                   )}
                 </View>
               </TouchableWithoutFeedback>
-              {isTextright ? (
-                <Text style={[styles.rightText, rightTextStyle]}>{option}</Text>
-              ) : null}
+
+              {isTextright ? <>{children}</> : null}
             </View>
           </View>
         </View>
-      ))}
+      )}
     </>
   );
 };
@@ -210,4 +311,195 @@ export default AppSelectionComponent;
 //       </View>
 //     </TouchableWithoutFeedback>
 //   </View>
+// </View>
+
+// <View style={[Styles.container, containerStyle]}>
+
+// {isTextright ? null : (
+//   <View style={[Styles.textContainer, textContainerStyle]}>
+//     <>
+//       {options.length === 0 ? (
+//         <>{children}</>
+//       ) : (
+//         options.map((option, index) => (
+//           <Text key={index} style={[styles.labelstyle, labelStyle]}>
+//             {option}
+//           </Text>
+//         ))
+//       )}
+//     </>
+//   </View>
+// )}
+// {options.length === 0 ? (
+//   <View
+//     style={[Styles.appSelectionContainer, appSelectionContainerStyle]}>
+//     <View style={{flexDirection: 'row', alignItems: 'center'}}>
+//       <TouchableWithoutFeedback
+//         disabled={disabled}
+//         onPress={() => {
+//           onValueChange();
+//           // handleOptionPress(option);
+//         }}>
+//         <View
+//           style={[
+//             isCheck
+//               ? Styles.checkSubContainer
+//               : isRadio
+//               ? Styles.radioSubContainer
+//               : Styles.switchSubContainer,
+//             {
+//               borderColor: value ? trackColor.true : trackColor.false,
+//               borderRadius: isCheck ? 4 : knobsize,
+//             },
+//             isRadio === false && {
+//               backgroundColor: value
+//                 ? thumbColor.true
+//                 : thumbColor.false,
+//             },
+//             appSelectionSubContainerStyle,
+//           ]}>
+//           {value && isCheck ? (
+//             <Images.Tick></Images.Tick>
+//           ) : value && isRadio ? (
+//             <View
+//               style={[
+//                 {
+//                   width: knobsize,
+//                   height: knobsize,
+//                   alignSelf: 'center',
+//                   borderRadius: 12 / 2,
+//                   backgroundColor: value
+//                     ? trackColor.true
+//                     : trackColor.false,
+//                 },
+//                 knobStyle,
+//               ]}
+//             />
+//           ) : (
+//             isCheck === false &&
+//             isRadio === false && (
+//               <View style={{flexDirection: 'row'}}>
+//                 {value && (
+//                   <Text style={styles.switchText}>{'Yes'}</Text>
+//                 )}
+
+//                 <View
+//                   style={[
+//                     {
+//                       width: knobsize,
+//                       height: knobsize,
+//                       alignSelf: value ? 'flex-end' : 'flex-start',
+//                       borderRadius: 18 / 2,
+//                       backgroundColor: colors.white,
+//                     },
+//                     knobStyle,
+//                   ]}
+//                 />
+//                 {value == false && (
+//                   <Text style={[styles.switchText, margin(8, 0)]}>
+//                     {'No'}
+//                   </Text>
+//                 )}
+//               </View>
+//             )
+//           )}
+//         </View>
+//       </TouchableWithoutFeedback>
+
+//       {isTextright ? <>{children}</> : null}
+//     </View>
+//   </View>
+// ) : (
+//   options.map((option, index) => (
+//     <View key={index} style={[Styles.container, containerStyle]}>
+
+//       <View
+//         style={[
+//           Styles.appSelectionContainer,
+//           appSelectionContainerStyle,
+//         ]}>
+//         <View style={{flexDirection: 'row', alignItems: 'center'}}>
+//           <TouchableWithoutFeedback
+//             disabled={disabled}
+//             onPress={() => {
+//               handleOptionPress(option);
+//             }}>
+//             <View
+//               style={[
+//                 isCheck
+//                   ? Styles.checkSubContainer
+//                   : isRadio
+//                   ? Styles.radioSubContainer
+//                   : Styles.switchSubContainer,
+//                 {
+//                   borderColor: selectedOption.includes(option)
+//                     ? trackColor.true
+//                     : trackColor.false,
+//                   borderRadius: isCheck ? 4 : knobsize,
+//                 },
+//                 isRadio === false && {
+//                   backgroundColor: selectedOption.includes(option)
+//                     ? thumbColor.true
+//                     : thumbColor.false,
+//                 },
+//                 appSelectionSubContainerStyle,
+//               ]}>
+//               {selectedOption.includes(option) && isCheck ? (
+//                 <Images.Tick></Images.Tick>
+//               ) : selectedOption.includes(option) && isRadio ? (
+//                 <View
+//                   style={[
+//                     {
+//                       width: knobsize,
+//                       height: knobsize,
+//                       alignSelf: 'center',
+//                       borderRadius: 12 / 2,
+//                       backgroundColor: selectedOption.includes(option)
+//                         ? trackColor.true
+//                         : trackColor.false,
+//                     },
+//                     knobStyle,
+//                   ]}
+//                 />
+//               ) : (
+//                 isCheck === false &&
+//                 isRadio === false && (
+//                   <View style={{flexDirection: 'row'}}>
+//                     {selectedOption.includes(option) && (
+//                       <Text style={styles.switchText}>{'Yes'}</Text>
+//                     )}
+//                     <View
+//                       style={[
+//                         {
+//                           width: knobsize,
+//                           height: knobsize,
+//                           alignSelf: selectedOption.includes(option)
+//                             ? 'flex-end'
+//                             : 'flex-start',
+//                           borderRadius: 18 / 2,
+//                           backgroundColor: colors.white,
+//                         },
+//                         knobStyle,
+//                       ]}
+//                     />
+//                     {selectedOption.includes(option) == false && (
+//                       <Text style={[styles.switchText, margin(8, 0)]}>
+//                         {'No'}
+//                       </Text>
+//                     )}
+//                   </View>
+//                 )
+//               )}
+//             </View>
+//           </TouchableWithoutFeedback>
+//           {isTextright ? (
+//             <Text style={[styles.rightText, rightTextStyle]}>
+//               {option}
+//             </Text>
+//           ) : null}
+//         </View>
+//       </View>
+//     </View>
+//   ))
+// )}
 // </View>

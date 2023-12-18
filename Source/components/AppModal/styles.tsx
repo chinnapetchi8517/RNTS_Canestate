@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginHorizontal: 16,
     borderRadius: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
+    margin: 10,
     marginVertical: 20,
   },
   bottomButtonContainer: {
