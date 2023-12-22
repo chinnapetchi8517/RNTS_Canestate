@@ -26,4 +26,9 @@ export const colors = {
   greyText: '#C1C1C1',
   terms: '#4042E2',
   cardtext: '#3E3F3E',
+  border: '#D9DADC',
+  borderText: '#414449',
+  bgtextclr: '#6A6A6A',
+  bgcolorText: '#F1F4F9',
+  green: '#60D7AF',
 };

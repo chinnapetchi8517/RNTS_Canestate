@@ -32,14 +32,14 @@ export interface AppSelectionComponentprops {
   onValueChange?: any;
   appSelectionContainerStyle?: ViewStyle;
   appSelectionSubContainerStyle?: ViewStyle;
-  textContainerStyle?: ViewStyle;
+  textContainerStyle?: TextStyle;
   thumbColor?: {false: string; true: string};
   trackColor?: {false: string; true: string};
-  value?: boolean;
+  value?: any;
   isTextright?: boolean;
   rightlabel?: String;
   rightTextStyle?: TextStyle;
-  options?: [];
+  options?: any;
   isMultiSelection?: boolean;
   isCheck?: boolean;
   isRadio?: boolean;
@@ -56,7 +56,6 @@ export interface TextareaComponentprops {
   placeholderText?: string;
   containerStyle?: ViewStyle;
   maxHeight?: number;
-  props?: TextInputProps;
   iscolorBlack?: boolean;
 }
 export interface Appmodalprops {

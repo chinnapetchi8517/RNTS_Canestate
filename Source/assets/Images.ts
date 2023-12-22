@@ -27,6 +27,13 @@ import Suite from '../assets/icons/suite.svg';
 import Townhouse from '../assets/icons/townhouse.svg';
 import Counter_plus from '../assets/icons/counter_plus.svg';
 import Counter_minus from '../assets/icons/counter_minus.svg';
+import Calendar from '../assets/icons/calendar.svg';
+import Alert from '../assets/icons/Alert.svg';
+import Car from '../assets/icons/car.svg';
+import Bath from '../assets/icons/bath.svg';
+import Bed from '../assets/icons/Bed.svg';
+import Share from '../assets/icons/share.svg';
+
 export const Images = {
   Splash: Splash,
   Intro1: Intro1,
@@ -57,6 +64,12 @@ export const Images = {
   Apartments: Apartments,
   Counter_minus,
   Counter_plus,
+  Calendar,
+  Alert,
+  Car,
+  Bath,
+  Bed,
+  Share,
 
   //::::::::::::Png
   HomeImg: require('../assets/pngImage/homeimg.png'),

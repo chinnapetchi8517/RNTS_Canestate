@@ -21,7 +21,6 @@ const TextAreaComponent: FC<TextareaComponentprops> = ({
   containerStyle = {},
   maxHeight,
   iscolorBlack = false,
-  props,
 }) => {
   return (
     <View style={[styles.textAreaContainer, containerStyle]}>
@@ -40,7 +39,6 @@ const TextAreaComponent: FC<TextareaComponentprops> = ({
           iscolorBlack ? colors.textbalck : colors.placeholder
         }
         placeholder={placeholderText}
-        {...props}
       />
     </View>
   );

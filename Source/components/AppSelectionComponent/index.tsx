@@ -1,6 +1,11 @@
 ///App component fro switch,checkbox and Radiobutton
 import React, {FC, useState} from 'react';
-import {Text, TouchableWithoutFeedback, View} from 'react-native';
+import {
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {colors} from '../../utils/colors';
 import Styles from './styles';
 import styles from './styles';
@@ -41,20 +46,22 @@ const AppSelectionComponent: FC<AppSelectionComponentprops> = ({
 
   const knobsize = isRadio ? 12 : knobSize;
 
-  const handleOptionPress = (option: never) => {
+  const handleOptionPress = (option: any, index: number) => {
+    console.log(index, 'indexindexindexindex');
+
     if (isMultiSelection) {
       //  multi-selection
       const newSelection = selectedOption.includes(option)
         ? selectedOption.filter(item => item !== option)
         : [...selectedOption, option];
       setSelectedOption(newSelection);
-      onValueChange(newSelection);
+      onValueChange(newSelection, index);
     } else {
       // Single-selection
-      console.log(option, 'option');
+      //console.log(option, 'option');
 
       setSelectedOption([option]);
-      onValueChange(option);
+      onValueChange(option, index);
     }
   };
   return (
@@ -77,7 +84,8 @@ const AppSelectionComponent: FC<AppSelectionComponentprops> = ({
                   <TouchableWithoutFeedback
                     disabled={disabled}
                     onPress={() => {
-                      handleOptionPress(option);
+                      //onValueChange(option, index);
+                      handleOptionPress(option, index);
                     }}>
                     <View
                       style={[

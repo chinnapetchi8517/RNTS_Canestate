@@ -121,30 +121,33 @@ const Property_Information: React.FC<screenProps> = ({navigation}) => {
                 borderRadius: 14,
               }}
               isCardsquare={true}>
-              <Text style={styles.cardheader}>Rooms</Text>
+              <Pressable
+                onPress={() => navigation.navigate('Room_Information')}>
+                <Text style={styles.cardheader}>Rooms</Text>
 
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginTop: 20,
-                  marginRight: 12,
-                }}>
-                <Pressable
-                  onPress={() => {
-                    roomsCounter > 0 ? setRoomscounter(roomsCounter - 1) : 0;
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: 20,
+                    marginRight: 12,
                   }}>
-                  <Images.Counter_minus />
-                </Pressable>
-                <Text style={styles.counterText}>{roomsCounter}</Text>
-                <Pressable
-                  onPress={() => {
-                    setRoomscounter(roomsCounter + 1);
-                  }}>
-                  <Images.Counter_plus />
-                </Pressable>
-              </View>
+                  <Pressable
+                    onPress={() => {
+                      roomsCounter > 0 ? setRoomscounter(roomsCounter - 1) : 0;
+                    }}>
+                    <Images.Counter_minus />
+                  </Pressable>
+                  <Text style={styles.counterText}>{roomsCounter}</Text>
+                  <Pressable
+                    onPress={() => {
+                      setRoomscounter(roomsCounter + 1);
+                    }}>
+                    <Images.Counter_plus />
+                  </Pressable>
+                </View>
+              </Pressable>
             </CardView>
             <CardView
               maxHeight={106}
@@ -316,7 +319,7 @@ const Property_Information: React.FC<screenProps> = ({navigation}) => {
               marginHorizontal: 24,
             }}>
             <AppButton
-              onPress={() => navigation.navigate('Property_Information')}
+              onPress={() => navigation.navigate('Summary')}
               containerStyle={{width: '100%'}}
               bordered={true}
               title={'submit'}

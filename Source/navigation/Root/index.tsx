@@ -14,10 +14,13 @@ import Property_Onboarding from '../../screens/Property_Onboarding';
 import Confirm_Address from '../../screens/Property_Onboarding/ConfirmAddress';
 import Property_Information from '../../screens/Property_Onboarding/PropertyInformation';
 import PropertyNotes from '../../screens/Property_Onboarding/PropertyInformation/PropertyNotes';
+import Summary from '../../screens/Property_Onboarding/Summary';
+import Room_Information from '../../screens/Property_Onboarding/RoomInformation';
+import RoomDetail from '../../screens/Property_Onboarding/RoomInformation/Roomdetail';
 
 interface RootNavigatorProps {}
 
-const RootNavigator: React.FC<RootNavigatorProps> = () => {
+const RootNavigator: React.FC<RootNavigatorProps> = ({}) => {
   const Root = createNativeStackNavigator();
 
   return (
@@ -97,6 +100,40 @@ const RootNavigator: React.FC<RootNavigatorProps> = () => {
           }}
           name={'PropertyNotes'}
           component={PropertyNotes}
+        />
+        <Root.Screen
+          options={{
+            headerShown: true,
+            title: 'Summary',
+            headerStyle: styles.header,
+            headerTintColor: colors.black,
+            headerTitleStyle: styles.headertitle,
+          }}
+          name={'Summary'}
+          component={Summary}
+        />
+        <Root.Screen
+          options={{
+            headerShown: true,
+            title: 'Room Information',
+            headerStyle: styles.header,
+            headerTintColor: colors.black,
+            headerTitleStyle: styles.headertitle,
+          }}
+          name={'Room_Information'}
+          component={Room_Information}
+        />
+
+        <Root.Screen
+          options={{
+            headerShown: true,
+            title: 'RoomDetail',
+            headerStyle: styles.header,
+            headerTintColor: colors.black,
+            headerTitleStyle: styles.headertitle,
+          }}
+          name={'RoomDetail'}
+          component={RoomDetail}
         />
       </Root.Navigator>
     </NavigationContainer>
