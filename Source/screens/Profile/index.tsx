@@ -1,9 +1,9 @@
 import React, {useState, useRef} from 'react';
 import {View, Text, Button, StatusBar, TextInput} from 'react-native';
 import {colors} from '../../utils/colors';
-import {ScreenProps} from 'react-native-screens';
+import {screenProps} from '../../utils/types';
 
-const Profile: React.FC<ScreenProps> = ({navigation}) => {
+const Profile: React.FC<screenProps> = ({navigation}) => {
   return (
     <>
       <StatusBar

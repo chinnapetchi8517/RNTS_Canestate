@@ -59,11 +59,11 @@ const properties = [
   },
 ];
 const More: React.FC<screenProps> = ({navigation}) => {
-  const renderProperties = (item: {}) => {
+  const renderProperties = ({item,index}) => {
     return (
       <View>
         <CardView
-          onPress={() => navigation.navigate('Property_Onboarding')}
+          onPress={() => index===0? navigation.navigate('Properties') :  navigation.navigate('Property_Onboarding')}
           isCardsquare={true}
           maxHeight={197}
           containerStyle={{marginHorizontal: 15}}
@@ -79,17 +79,17 @@ const More: React.FC<screenProps> = ({navigation}) => {
               marginTop: 20,
               marginBottom: 8,
             }}
-            source={item.item.src}></Image>
-          <Text style={styles.subtextheader}>{item.item.name}</Text>
+            source={item.src}></Image>
+          <Text style={styles.subtextheader}>{item.name}</Text>
           <View
             style={[CommonStyles.Row, {marginHorizontal: 16, marginTop: 5}]}>
             <Images.Blue_dot />
-            <Text style={[styles.listText]}>{item.item.text1}</Text>
+            <Text style={[styles.listText]}>{item.text1}</Text>
           </View>
           <View
             style={[CommonStyles.Row, {marginHorizontal: 16, marginTop: 5}]}>
             <Images.Red_dot />
-            <Text style={[styles.listText]}>{item.item.text2}</Text>
+            <Text style={[styles.listText]}>{item.text2}</Text>
           </View>
         </CardView>
       </View>

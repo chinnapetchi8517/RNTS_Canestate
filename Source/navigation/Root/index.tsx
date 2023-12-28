@@ -14,6 +14,7 @@ import Property_Onboarding from '../../screens/Property_Onboarding';
 import Confirm_Address from '../../screens/Property_Onboarding/ConfirmAddress';
 import Property_Information from '../../screens/Property_Onboarding/PropertyInformation';
 import PropertyNotes from '../../screens/Property_Onboarding/PropertyInformation/PropertyNotes';
+import Properties from '../../screens/Properties';
 
 interface RootNavigatorProps {}
 
@@ -29,6 +30,17 @@ const RootNavigator: React.FC<RootNavigatorProps> = () => {
           gestureEnabled: false,
         }}>
         <Root.Screen name={'Splash'} component={Splash} />
+        <Root.Screen
+          name={'Properties'}
+          options={{
+            headerShown: true,
+            title: 'Properties',
+            headerStyle: styles.header,
+            headerTintColor: colors.black,
+            headerTitleStyle: styles.headertitle,
+          }}
+          component={Properties}
+        />
         <Root.Screen name={'Onboarding'} component={Onboarding} />
         <Root.Screen
           options={{

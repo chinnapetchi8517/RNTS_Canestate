@@ -22,11 +22,12 @@ const styles: Styles = StyleSheet.create({
   slider1: {
     justifyContent: 'center',
     alignItems: 'center',
+  
   },
   text: {
     color: colors.black,
     fontSize: 24,
-    marginTop: 75,
+    marginTop: 45,
     fontWeight: 'bold',
     marginHorizontal: 35,
     // fontFamily: fonts.interBold,
@@ -34,7 +35,7 @@ const styles: Styles = StyleSheet.create({
   subtext: {
     color: colors.grey,
     fontSize: 16,
-    marginTop: 24,
+    marginTop: 10,
     fontWeight: 'normal',
     lineHeight: 27,
     textAlign: 'center',
@@ -80,6 +81,7 @@ const styles: Styles = StyleSheet.create({
     marginBottom: 30,
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop:50
   },
   input: {
     color: colors.placeholdetext,
