@@ -3,9 +3,14 @@ import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
 
 interface Styles {
+  pinCodeText: any;
+  activepoint: any;
+  otpcontainner: ViewStyle;
   wrapper: ViewStyle;
   centerimage: ViewStyle;
   title: TextStyle;
+  inputcontainer: ViewStyle;
+  pointcontainer: ViewStyle;
 }
 
 const styles: Styles = StyleSheet.create({
@@ -22,6 +27,32 @@ const styles: Styles = StyleSheet.create({
     color: colors.textbalck,
     textAlign: 'center',
     marginTop: 42,
+  },
+  otpcontainner: {
+    marginHorizontal: 25,
+    marginTop: 24,
+  },
+  pointcontainer: {
+    paddingHorizontal: 29,
+    paddingVertical: 16,
+    marginHorizontal: 8,
+
+    width: 71,
+    height: 56,
+  },
+  activepoint: {
+    backgroundColor: colors.otpbg,
+  },
+  pinCodeText: {
+    fontFamily: fonts.robotoMedium,
+    fontSize: 20,
+    fontWeight: '600',
+    color: colors.textbalck,
+    textAlign: 'center',
+  },
+  inputcontainer: {
+    // marginHorizontal: 8,
+    //padding: 20,
   },
 });
 

@@ -4,15 +4,13 @@ import {Images} from '../../assets/Images';
 import {colors} from '../../utils/colors';
 import styles from './styles';
 import LinearGradient from 'react-native-linear-gradient';
+import {screenProps} from '../../utils/types';
 
-interface SplashProps {
-  navigation: any;
-}
-
-const Splash: React.FC<SplashProps> = ({navigation}) => {
+const Splash: React.FC<screenProps> = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('Onboarding');
+      // navigation.navigate('Bottomtab', {screen: 'More'});
     }, 1000);
   }, []);
 
