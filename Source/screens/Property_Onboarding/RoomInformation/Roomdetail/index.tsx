@@ -21,7 +21,7 @@ import CardView from '../../../../components/CardView';
 import {useRoute} from '@react-navigation/native';
 import AppButton from '../../../../components/AppButton';
 import TextAreaComponent from '../../../../components/TextareaComponent';
-import AppSelectionComponent from '../../../../components/AppSelectionComponent';
+import {CustomSelectionControl} from '../../../../components/CustomSelectionControl';
 import {AppModal} from '../../../../components/AppModal';
 import {fonts} from '../../../../utils/fonts';
 const roomsdata = [
@@ -30,9 +30,22 @@ const roomsdata = [
   {id: 3, room: 'Room 3'},
   {id: 4, room: 'Room 4'},
 ];
-const furnished = ['single Bed', 'Double Bed'];
-const furnished2 = ['Fan', 'Light', 'Ac', 'Chair', 'Table'];
-const Addons = ['Shared', 'street Parking', 'Private'];
+const furnished = [
+  {label: 'single Bed', value: 'single Bed'},
+  {label: 'Double Bed', value: 'Double Bed'},
+];
+const furnished2 = [
+  {label: 'Fan', value: 'Fan'},
+  {label: 'Light', value: 'Light'},
+  {label: 'AC', value: 'Ac'},
+  {label: 'Chair', value: 'Chair'},
+  {label: 'Table', value: 'Table'},
+];
+const Addons = [
+  {label: 'Shared', value: 'Shared'},
+  {label: 'street Parking', value: 'street Parking'},
+  {label: 'Private', value: 'Private'},
+];
 const RoomDetail: React.FC<screenProps> = ({navigation}) => {
   const route = useRoute();
   const Id = route?.params?.id;
@@ -112,26 +125,28 @@ const RoomDetail: React.FC<screenProps> = ({navigation}) => {
             shadowColor: 'black',
             elevation: 0.4,
           }}>
-          {/* <AppSelectionComponent
-            options={options}
-            onSelect={handleOptionSelect}
-          /> */}
-
-          <AppSelectionComponent
-            options={['Small', 'Medium', 'Large']}
-            isMultiSelection={false}
-            isRadio={true}
+          <CustomSelectionControl
+            options={[
+              {label: 'Small', value: 'Small'},
+              {label: 'Medium', value: 'Medium'},
+              {label: 'Large', value: 'Large'},
+            ]}
+            type="radio"
+            mainCointainerstyle={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
             isTextright={true}
             disabled={false}
             value={selectValue}
             containerStyle={{
               marginHorizontal: 16,
-              paddingHorizontal: 10,
-              paddingVertical: 18,
+              //paddingHorizontal: 10,
+              //paddingTop: 10,
 
-              //paddingBottom: 18,
+              paddingBottom: 10,
             }}
-            onValueChange={handleSelection}
+            handleOptionPress={handleSelection}
           />
         </View>
         <Pressable
@@ -140,21 +155,23 @@ const RoomDetail: React.FC<screenProps> = ({navigation}) => {
             // flexDirection: 'row',
             // justifyContent: 'space-between',
             marginHorizontal: 16,
-            marginTop: 12,
+            // marginTop: 12,
             backgroundColor: 'white',
             borderRadius: 15,
           }}>
-          <AppSelectionComponent
-            options={['Private', 'Furnished', 'Add-ons']}
-            isMultiSelection={false}
-            isRadio={false}
-            isCheck={false}
+          <CustomSelectionControl
+            options={[
+              {label: 'Private', value: 'Private'},
+              {label: 'Furnished', value: 'Furnished'},
+              {label: 'Add-ons', value: 'Add-ons'},
+            ]}
+            type="switch"
             isTextright={false}
             disabled={false}
             containerStyle={{
               marginHorizontal: 16,
               paddingHorizontal: 10,
-              paddingVertical: 18,
+              //paddingVertical: 10,
               height: 84,
               marginTop: 16,
               backgroundColor: 'white',
@@ -164,7 +181,7 @@ const RoomDetail: React.FC<screenProps> = ({navigation}) => {
               //paddingBottom: 18,
             }}
             labelStyle={{color: colors.textbalck}}
-            onValueChange={handleSelection}
+            handleOptionPress={handleSelection}
           />
         </Pressable>
         <View
@@ -224,20 +241,20 @@ const RoomDetail: React.FC<screenProps> = ({navigation}) => {
           />
           <ScrollView style={{height: 51}}>
             {selectValue != 2 ? (
-              <AppSelectionComponent
+              <CustomSelectionControl
                 options={furnished}
-                isMultiSelection={false}
-                isRadio={true}
+                type="radio"
                 disabled={false}
                 containerStyle={{
                   marginHorizontal: 24,
                   marginVertical: 11,
                 }}
+                isTextright={false}
                 // isTextright={true}
-                //   onValueChange={handleSelection}
-              ></AppSelectionComponent>
+                handleOptionPress={handleSelection}></CustomSelectionControl>
             ) : null}
-            <AppSelectionComponent
+            <CustomSelectionControl
+              type="checkbox"
               options={selectValue != 2 ? furnished2 : Addons}
               isMultiSelection={true}
               isCheck={true}
@@ -247,9 +264,8 @@ const RoomDetail: React.FC<screenProps> = ({navigation}) => {
                 marginVertical: 11,
               }}
               textContainerStyle={{marginLeft: 15}}
-              // isTextright={true}
-              //   onValueChange={handleSelection}
-            ></AppSelectionComponent>
+              isTextright={false}
+              handleOptionPress={handleSelection}></CustomSelectionControl>
           </ScrollView>
           <View
             style={{

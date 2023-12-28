@@ -1,5 +1,13 @@
 import React, {useState, useRef} from 'react';
-import {View, Text, Button, StatusBar, TextInput} from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  StatusBar,
+  TextInput,
+  //Animated,
+  Dimensions,
+} from 'react-native';
 import {colors} from '../../utils/colors';
 import Swiper from 'react-native-swiper';
 import styles from './styles';
@@ -7,25 +15,94 @@ import {Images} from '../../assets/Images';
 import AppButton from '../../components/AppButton';
 import CommonStyles, {margin} from '../../utils/CommonStyles';
 
-import AppSelectionComponent from '../../components/AppSelectionComponent';
+import {CustomSelectionControl} from '../../components/CustomSelectionControl';
+
 import TextAreaComponent from '../../components/TextareaComponent';
 import {AppModal} from '../../components/AppModal';
 import CardView from '../../components/CardView';
 import {screenProps} from '../../utils/types';
-
+import Animated, {
+  interpolate,
+  ExtrapolationType,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
+const data = [
+  {
+    id: 1,
+  },
+  {
+    id: 2,
+  },
+  {
+    id: 3,
+  },
+  {
+    id: 4,
+  },
+];
 const Onboarding: React.FC<screenProps> = ({navigation}) => {
   const [ind, setind] = useState<number>(0);
   const [ispagination, setispagination] = useState<boolean>(false);
   const [isInputFocus, setIsInputFocus] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const swiperRef = useRef<any>();
+  //const scrollX = useRef(new Animated.Value(0)).current;
+  const activeDotIndex = useSharedValue(0);
 
   const indexChanged = (index: number) => {
     console.log(index);
+    activeDotIndex.value = index;
     setind(index);
     index != 3 ? setispagination(true) : setispagination(false);
   };
+  const {width} = Dimensions.get('screen');
+  var inputRange: any;
+  data.map(
+    (item, index) =>
+      (inputRange = [(index - 1) * width, index * width, (index + 1) * width]),
+  );
+  console.log(inputRange, 'indexvindex');
 
+  // const dotWidth =interpolate({
+  //   inputRange,
+  //   outputRange: [12, 30, 12],
+  //   extrapolate: 'clamp',
+  // });
+
+  // const interpolatedOpacity = interpolate(activeDotIndex.value, {
+  //   inputRange: [0, 1],
+  //   outputRange: [0.5, 1],
+
+  //   extrapolate: Extrapolation.CLAMP,
+  // });
+  //  interpolate(activeDotIndex.value, {
+  //   inputRange,
+  //   outputRange: [12, 30, 12],
+  //   extrapolate: Extrapolate.CLAMP,
+  // });
+  // const opacity = scrollX.interpolate({
+  //   inputRange: [0, 100],
+  //   outputRange: ['0deg', '360deg'],
+  //   extrapolate: 'clamp',
+  // });
+
+  // const backgroundColor = scrollX.interpolate({
+  //   inputRange: [0, 100],
+  //   outputRange: ['0deg', '360deg'],
+  //   extrapolate: 'clamp',
+  // });
+
+  const dotStyle1 = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateX: withSpring(activeDotIndex.value * 10), // Adjust the translation distance as needed
+        },
+      ],
+    };
+  });
   return (
     <View
       style={[
@@ -46,8 +123,26 @@ const Onboarding: React.FC<screenProps> = ({navigation}) => {
         bounces={true}
         onIndexChanged={(index: number) => indexChanged(index)}
         paginationStyle={{bottom: 15}}
-        dot={<View style={styles.dotstyle} />}
-        activeDot={<View style={styles.activedot} />}
+        dot={
+          <Animated.View
+            style={[
+              styles.dotstyle,
+              dotStyle1,
+              // {width: dotWidth},
+              // idx === index && styles.dotActive,
+            ]}
+          />
+        }
+        activeDot={
+          <Animated.View
+            style={[
+              styles.activedot,
+              {width: 20},
+              dotStyle1,
+              // idx === index && styles.dotActive,
+            ]}
+          />
+        }
         showsButtons={false}>
         <View style={styles.slider1}>
           <Images.Intro1 width={307} height={359} marginTop={76} />
@@ -111,7 +206,7 @@ const Onboarding: React.FC<screenProps> = ({navigation}) => {
       </View>
       {/* <View style={{marginTop: 50, marginHorizontal: 20}}> */}
 
-      {/* <AppSelectionComponent
+      {/* <CustomSelectionControl
           options={['Option 1', 'Option 2', 'Option 3']}
           isMultiSelection={false}
           rightlabel={'Fixed'}

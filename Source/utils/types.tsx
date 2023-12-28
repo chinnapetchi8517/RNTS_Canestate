@@ -22,14 +22,15 @@ export interface ButtonInterface
   icon?: boolean;
 }
 
-export interface AppSelectionComponentprops {
+export interface CustomSelectionControlprops {
+  type?: string;
   containerStyle?: ViewStyle;
   disabled?: boolean;
   knobSize?: number;
   knobStyle?: ViewStyle;
   label?: string;
   labelStyle?: TextStyle;
-  onValueChange?: any;
+  handleOptionPress?: any;
   appSelectionContainerStyle?: ViewStyle;
   appSelectionSubContainerStyle?: ViewStyle;
   textContainerStyle?: TextStyle;
@@ -39,11 +40,13 @@ export interface AppSelectionComponentprops {
   isTextright?: boolean;
   rightlabel?: String;
   rightTextStyle?: TextStyle;
-  options?: any;
+  options?: [];
   isMultiSelection?: boolean;
   isCheck?: boolean;
   isRadio?: boolean;
+  mainCointainerstyle?: ViewStyle;
   children?: any;
+  rightchildren?: any;
 }
 
 export interface TextareaComponentprops {

@@ -9,7 +9,8 @@ import {screenProps} from '../../utils/types';
 const Splash: React.FC<screenProps> = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('RoomDetail');
+      navigation.navigate('Onboarding');
+      // navigation.navigate('Bottomtab', {screen: 'More'});
     }, 1000);
   }, []);
 

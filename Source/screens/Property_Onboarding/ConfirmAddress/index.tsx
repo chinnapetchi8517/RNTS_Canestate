@@ -24,7 +24,7 @@ import CommonStyles from '../../../utils/CommonStyles';
 import Geolocation from '@react-native-community/geolocation';
 import styles from './styles';
 import TextAreaComponent from '../../../components/TextareaComponent';
-import AppSelectionComponent from '../../../components/AppSelectionComponent';
+import {CustomSelectionControl} from '../../../components/CustomSelectionControl';
 const addressData = [
   {id: 1, name: 'Home', Img: <Images.Homeaddress />},
   {id: 2, name: 'Appartment', Img: <Images.Apartments />},
@@ -216,45 +216,49 @@ const Confirm_Address: React.FC<screenProps> = ({navigation}) => {
               }}
               keyExtractor={(_, i) => _.id.toString()}></FlatList>
             <View style={{marginHorizontal: 36}}>
-              <AppSelectionComponent
-                //options={['']}
+              <CustomSelectionControl
+                type="checkbox"
+                options={['']}
                 isMultiSelection={true}
                 isCheck={true}
                 disabled={false}
                 containerStyle={{
-                  marginHorizontal: 36,
+                  marginHorizontal: 16,
                   marginBottom: 36,
                 }}
                 value={isterms}
                 isTextright={true}
-                onValueChange={() => setisTerms(!isterms)}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    flexWrap: 'wrap',
-                    alignItems: 'center',
-                    //marginHorizontal: 36,
-                  }}>
-                  <Text style={styles.termsText}>I accept the</Text>
-                  <Pressable onPress={() => setismodal(true)}>
-                    <Text
-                      style={[
-                        styles.termsText,
-                        {
-                          color: colors.terms,
-                          borderBottomColor: colors.terms,
-                          borderBottomWidth: 0.5,
-                        },
-                      ]}>
-                      terms & conditions
-                    </Text>
-                  </Pressable>
+                rightchildren={
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      flexWrap: 'wrap',
+                      alignItems: 'center',
+                      //marginHorizontal: 36,
+                    }}>
+                    <Text style={styles.termsText}>I accept the</Text>
+                    <Pressable onPress={() => setismodal(true)}>
+                      <Text
+                        style={[
+                          styles.termsText,
+                          {
+                            color: colors.terms,
+                            borderBottomColor: colors.terms,
+                            borderBottomWidth: 0.5,
+                          },
+                        ]}>
+                        terms & conditions
+                      </Text>
+                    </Pressable>
 
-                  <Text style={styles.termsText}>
-                    to add my property to the canestate platform
-                  </Text>
-                </View>
-              </AppSelectionComponent>
+                    <Text style={styles.termsText}>
+                      to add my property to the canestate platform
+                    </Text>
+                  </View>
+                }
+                handleOptionPress={() =>
+                  setisTerms(!isterms)
+                }></CustomSelectionControl>
             </View>
           </>
           <View

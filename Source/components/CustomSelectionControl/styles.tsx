@@ -3,9 +3,13 @@ import {fonts} from '../../utils/fonts';
 import {colors} from '../../utils/colors';
 
 const styles = StyleSheet.create({
+  rendercontainer: {margin: 10},
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginTop: 10,
+    marginHorizontal: 20,
+    alignItems: 'center',
   },
   textContainer: {
     justifyContent: 'center',

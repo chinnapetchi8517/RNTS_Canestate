@@ -28,7 +28,7 @@ const styles: Styles = StyleSheet.create({
     fontSize: 24,
     marginTop: 75,
     fontWeight: 'bold',
-    marginHorizontal: 35,
+    //marginHorizontal: 35,
     // fontFamily: fonts.interBold,
   },
   subtext: {

@@ -17,30 +17,33 @@ import {BorderRadius, padding} from '../../../utils/CommonStyles';
 import AppButton from '../../../components/AppButton';
 import TextAreaComponent from '../../../components/TextareaComponent';
 import CardView from '../../../components/CardView';
-import AppSelectionComponent from '../../../components/AppSelectionComponent';
+import {CustomSelectionControl} from '../../../components/CustomSelectionControl';
 import {AppModal} from '../../../components/AppModal';
 import {fonts} from '../../../utils/fonts';
 import {launchImageLibrary} from 'react-native-image-picker';
 const ameneties = [
-  'On site security',
-  'Elevator',
-  'Swimming pool',
-  'Cctv',
-  'Bbq Area',
-  'Bike Racks',
-  'Bike Room',
-  'Buzzer Entry',
-  'Fitness Area',
-  'Garage',
-  'Garage',
-  'Garage',
-  'Garage',
-  'Garage',
+  {label: 'On site security', value: 'On site security'},
+  {label: 'On site security', value: 'On site security'},
+  {label: 'Elevator', value: 'Elevator'},
+  {label: 'Swimming pool', value: 'Swimming pool'},
+  {label: 'Cctv', value: 'Cctv'},
+  {label: 'Bbq Area', value: 'Bbq Area'},
+  {label: 'Bbq Area', value: 'Bbq Area'},
+  {label: 'Bbq Area', value: 'Bbq Area'},
+  {label: 'Bbq Area', value: 'Bbq Area'},
+  {label: 'Bbq Area', value: 'Bbq Area'},
+  {label: 'Bbq Area', value: 'Bbq Area'},
 ];
 
-const liable = ['Heat', 'Hydro', 'Water', 'Snow Removal', 'Lawn Maintenance'];
+const liable = [
+  {label: 'Heat', value: 'Heat'},
+  {label: 'Hydro', value: 'Hydro'},
+  {label: 'Water', value: 'Water'},
+  {label: 'Snow Removal', value: 'Snow Removal'},
+];
 const Property_Information: React.FC<screenProps> = ({navigation}) => {
   const [roomsCounter, setRoomscounter] = useState(0);
+
   const [bathroomsCounter, setBathroomscounter] = useState(0);
   const [carparking, setCarparking] = useState(0);
   const [isanemeties, setisanemeties] = useState(false);
@@ -236,17 +239,13 @@ const Property_Information: React.FC<screenProps> = ({navigation}) => {
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
-                  //   justifyContent: 'center',
-                  marginTop: 20,
-                  marginHorizontal: 20,
                 }}>
-                <AppSelectionComponent
+                <CustomSelectionControl
                   isMultiSelection={false}
                   options={['']}
-                  isCheck={false}
-                  isRadio={false}
+                  type="switch"
                   value={isswitch}
-                  onValueChange={() => setisSwitch(!isswitch)}
+                  handleOptionPress={() => setisSwitch(!isswitch)}
                 />
               </View>
             </CardView>
@@ -297,19 +296,23 @@ const Property_Information: React.FC<screenProps> = ({navigation}) => {
             </CardView>
           </View>
 
-          <AppSelectionComponent
+          <CustomSelectionControl
             options={[
-              'I accept the terms & conditions  to add my property to the canestate platform ',
+              {
+                label:
+                  'I accept the terms & conditions  to add my property to the canestate platform',
+                value:
+                  'I accept the terms & conditions  to add my property to the canestate platform ',
+              },
             ]}
-            isMultiSelection={true}
-            isCheck={true}
+            type="checkbox"
             disabled={false}
             containerStyle={{
               marginHorizontal: 36,
               marginVertical: 15,
             }}
             isTextright={true}
-            onValueChange={handleSelection}></AppSelectionComponent>
+            handleOptionPress={handleSelection}></CustomSelectionControl>
 
           <View
             style={{
@@ -369,17 +372,17 @@ const Property_Information: React.FC<screenProps> = ({navigation}) => {
             }}
           />
           <ScrollView style={{height: 51}}>
-            <AppSelectionComponent
+            <CustomSelectionControl
               options={isliable ? liable : ameneties}
               isMultiSelection={true}
-              isCheck={true}
+              type="checkbox"
               disabled={false}
               containerStyle={{
                 marginHorizontal: 24,
                 marginVertical: 11,
               }}
-              // isTextright={true}
-              onValueChange={handleSelection}></AppSelectionComponent>
+              isTextright={false}
+              handleOptionPress={handleSelection}></CustomSelectionControl>
           </ScrollView>
           <View
             style={{

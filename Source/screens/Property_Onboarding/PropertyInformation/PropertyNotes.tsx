@@ -17,7 +17,6 @@ import {BorderRadius, padding} from '../../../utils/CommonStyles';
 import AppButton from '../../../components/AppButton';
 import TextAreaComponent from '../../../components/TextareaComponent';
 import CardView from '../../../components/CardView';
-import AppSelectionComponent from '../../../components/AppSelectionComponent';
 import {AppModal} from '../../../components/AppModal';
 import {fonts} from '../../../utils/fonts';
 

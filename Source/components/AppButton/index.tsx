@@ -112,12 +112,7 @@ const AppButton: FC<ButtonInterface> = ({
   return (
     <TouchableOpacity
       disabled={disabled || loading}
-      style={[
-        styles.buttonContainer,
-        customContainerStyle,
-        containerStyle,
-        // loading && HelperStyles.justView('backgroundColor', Colors.primary),
-      ]}
+      style={[styles.buttonContainer, customContainerStyle, containerStyle]}
       onPressIn={() => {
         Keyboard.dismiss();
       }}

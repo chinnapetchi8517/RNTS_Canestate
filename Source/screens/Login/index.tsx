@@ -14,7 +14,7 @@ import {Images} from '../../assets/Images';
 import AppButton from '../../components/AppButton';
 import CardView from '../../components/CardView';
 import TextAreaComponent from '../../components/TextareaComponent';
-import AppSelectionComponent from '../../components/AppSelectionComponent';
+import {CustomSelectionControl} from '../../components/CustomSelectionControl';
 import {margin} from '../../utils/CommonStyles';
 import {screenProps} from '../../utils/types';
 const Login: React.FC<screenProps> = ({navigation}) => {
@@ -68,39 +68,64 @@ const Login: React.FC<screenProps> = ({navigation}) => {
                   justifyContent: 'space-between',
                   marginTop: 24,
                 }}>
-                <AppSelectionComponent
-                  options={['Male', 'Female', 'Others']}
-                  isMultiSelection={false}
-                  isRadio={true}
+                <CustomSelectionControl
+                  type="radio"
+                  options={[
+                    {label: 'Male', value: 'Male'},
+                    {label: 'Female', value: 'Female'},
+                    {label: 'Others', value: 'Others'},
+                  ]}
                   isTextright={true}
                   disabled={false}
                   containerStyle={{
                     marginHorizontal: 16,
                     paddingTop: 18,
+
                     //paddingBottom: 18,
                   }}
-                  onValueChange={handleSelection}
+                  mainCointainerstyle={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  }}
+                  handleOptionPress={handleSelection}
                 />
               </View>
               <View
                 style={{
-                  marginTop: 70,
+                  marginTop: 30,
                 }}>
-                <AppSelectionComponent
+                <CustomSelectionControl
+                  type="checkbox"
                   options={[
-                    'I agree to the Terms & conditions',
-                    'Receive news & product updated',
+                    {
+                      label: 'I agree to the Terms & conditions',
+                      value: 'I agree to the Terms & conditions',
+                    },
+                    {
+                      label: 'Receive news & product updated',
+                      value: 'Receive news & product updated',
+                    },
                   ]}
-                  isMultiSelection={true}
-                  isCheck={true}
                   disabled={false}
                   containerStyle={{
-                    marginHorizontal: 16,
-                    paddingTop: 18,
+                    ///marginHorizontal: 16,
+                    paddingTop: 10,
                     paddingBottom: 10,
                   }}
+                  appSelectionContainerStyle={{
+                    marginHorizondal: 0,
+                    marginTop: 0,
+                  }}
+                  mainCointainerstyle={{
+                    margin: 0,
+                  }}
+                  rightTextStyle={{
+                    fontSize: 14,
+                    marginHorizondal: 0,
+                    marginRight: 60,
+                  }}
                   isTextright={true}
-                  onValueChange={handleSelection}
+                  handleOptionPress={handleSelection}
                 />
               </View>
               <AppButton

@@ -10,7 +10,7 @@ import {
 import {colors} from '../../../utils/colors';
 import {screenProps} from '../../../utils/types';
 import styles from './styles';
-import AppSelectionComponent from '../../../components/AppSelectionComponent';
+import {CustomSelectionControl} from '../../../components/CustomSelectionControl';
 import {Images} from '../../../assets/Images';
 import CommonStyles, {margin, marginTBRL} from '../../../utils/CommonStyles';
 import AppButton from '../../../components/AppButton/index';
@@ -26,6 +26,7 @@ const Summary: React.FC<screenProps> = ({navigation}) => {
   const [amenetiescount, setamenetiescount] = useState(0);
   const [liablecount, setliablecount] = useState(0);
   const [isrent, setIsrent] = useState(false);
+  const handleSelection = (selected: any) => {};
   return (
     <>
       <StatusBar
@@ -39,16 +40,16 @@ const Summary: React.FC<screenProps> = ({navigation}) => {
           <Text style={styles.rentText}>$ 0</Text>
         </View>
 
-        <AppSelectionComponent
-          options={['Availability']}
+        <CustomSelectionControl
+          options={[{label: 'Availability', value: 'Availability'}]}
           isMultiSelection={true}
+          type="switch"
           isCheck={false}
           disabled={false}
           containerStyle={styles.availabkeView}
-          textContainerStyle={{marginHorizontal: 24}}
+          textContainerStyle={{marginHorizontal: 18}}
           isTextright={false}
-          // onValueChange={handleSelection}
-        ></AppSelectionComponent>
+          handleOptionPress={handleSelection}></CustomSelectionControl>
         <View
           style={[
             styles.availabkeView,
@@ -61,18 +62,24 @@ const Summary: React.FC<screenProps> = ({navigation}) => {
           <Images.Calendar />
         </View>
         <View style={[styles.availabkeView]}>
-          <View style={[CommonStyles.Row, marginTBRL(10, 0, 0, 0)]}>
+          <View style={[CommonStyles.Row]}>
             <Text style={styles.text}>Contract Type</Text>
-            <AppSelectionComponent
-              options={['Fixed', 'Monthly']}
+            <CustomSelectionControl
+              options={[
+                {label: 'Fixed', value: 'Fixed'},
+                {label: 'Monthly', value: 'Monthly'},
+              ]}
+              mainCointainerstyle={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
               isCheck={false}
-              isRadio={true}
+              type="radio"
               disabled={false}
               //containerStyle={styles.availabkeView}
               containerStyle={margin(10, 0)}
               isTextright={true}
-              // onValueChange={handleSelection}
-            ></AppSelectionComponent>
+              handleOptionPress={handleSelection}></CustomSelectionControl>
           </View>
           <Text style={[styles.text]}>Period</Text>
           <View

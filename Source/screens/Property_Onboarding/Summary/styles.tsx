@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   availabkeView: {
     marginHorizontal: 24,
-    marginVertical: 10,
+    marginVertical: 8,
     backgroundColor: 'white',
     padding: 12,
     borderRadius: 15,
