@@ -1,16 +1,18 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
+  StyleSheet,
   View,
+  Dimensions,
+  Animated,
+  TouchableOpacity,
   Text,
-  Button,
   StatusBar,
   TextInput,
-  //Animated,
-  Dimensions,
+  ScrollView,
 } from 'react-native';
+import {LiquidLike} from 'react-native-animated-pagination-dots';
 import {colors} from '../../utils/colors';
-import Swiper from 'react-native-swiper';
-import styles from './styles';
+import Styles from './styles';
 import {Images} from '../../assets/Images';
 import AppButton from '../../components/AppButton';
 import CommonStyles, {margin} from '../../utils/CommonStyles';
@@ -21,49 +23,119 @@ import TextAreaComponent from '../../components/TextareaComponent';
 import {AppModal} from '../../components/AppModal';
 import CardView from '../../components/CardView';
 import {screenProps} from '../../utils/types';
-import Animated, {
-  interpolate,
-  ExtrapolationType,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from 'react-native-reanimated';
+
+const {width} = Dimensions.get('screen');
+
 const data = [
   {
-    id: 1,
+    image: require('../../assets/pngImage/intro1.png'),
+    des: ' Our Ai system is designed to mitigate workloads & improve efficiency.',
   },
   {
-    id: 2,
+    image: require('../../assets/pngImage/intro2.png'),
+    des: 'No Need knock any tenants for rent collection',
   },
   {
-    id: 3,
+    image: require('../../assets/pngImage/intro3.png'),
+    des: 'Evaluate the tenants with preloaded credit score and background infos.',
   },
   {
-    id: 4,
+    image: require('../../assets/pngImage/intro4.png'),
+    des: '',
   },
 ];
-const Onboarding: React.FC<screenProps> = ({navigation}) => {
-  const [ind, setind] = useState<number>(0);
-  const [ispagination, setispagination] = useState<boolean>(false);
-  const [isInputFocus, setIsInputFocus] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-  const swiperRef = useRef<any>();
-  //const scrollX = useRef(new Animated.Value(0)).current;
-  const activeDotIndex = useSharedValue(0);
 
-  const indexChanged = (index: number) => {
-    console.log(index);
-    activeDotIndex.value = index;
-    setind(index);
-    index != 3 ? setispagination(true) : setispagination(false);
+const imageW = width * 0.7;
+const imageH = imageW * 1.4;
+
+const Onboarding: React.FC<screenProps> = ({navigation}) => {
+  const scrollX = React.useRef(new Animated.Value(0)).current;
+  let scrollOffset = React.useRef(new Animated.Value(0)).current;
+  const keyExtractor = React.useCallback((_, index) => index.toString(), []);
+  //Current item index of flatlist
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  let flatListRef = React.useRef(null);
+  const gotoNextPage = () => {
+    console.log('activeIndex:::: ', activeIndex);
+
+    if (activeIndex + 1 < data.length) {
+      // @ts-ignore
+      flatListRef.current.scrollToIndex({
+        index: activeIndex + 1,
+        animated: true,
+      });
+    } else {
+      navigation.navigate('Otp');
+    }
   };
-  const {width} = Dimensions.get('screen');
-  var inputRange: any;
-  data.map(
-    (item, index) =>
-      (inputRange = [(index - 1) * width, index * width, (index + 1) * width]),
-  );
-  console.log(inputRange, 'indexvindex');
+  // const gotoPrevPage = () => {
+  //   if (activeIndex !== 0) {
+  //     // @ts-ignore
+  //     flatListRef.current.scrollToIndex({
+  //       index: activeIndex - 1,
+  //       animated: true,
+  //     });
+  //   }
+  // };
+  // const skipToStart = () => {
+  //   // @ts-ignore
+  //   flatListRef.current.scrollToIndex({
+  //     index: data.length - 1,
+  //     animated: true,
+  //   });
+  // };
+  //Flatlist props that calculates current item index
+  const onViewRef = React.useRef(({viewableItems}: any) => {
+    console.log('viewableItems::: ', JSON.stringify(viewableItems));
+    setActiveIndex(viewableItems[0]?.index);
+  });
+  const viewConfigRef = React.useRef({viewAreaCoveragePercentThreshold: 50});
+  const renderItem = React.useCallback(({item, index}) => {
+    return (
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={[styles.itemContainer, {backgroundColor: 'white'}]}>
+          <Animated.Image
+            style={{
+              width: 300,
+              height: index !== 3 ? 400 : 600,
+              borderRadius: 20,
+              resizeMode: index !== 3 ? 'contain' : 'cover',
+              marginTop: index !== 3 ? 40 : 60,
+              backgroundColor: 'white',
+            }}
+            source={item.image}
+          />
+          {index !== 3 ? (
+            <>
+              <Text style={Styles.text}>AI Property Management</Text>
+              <Text style={[Styles.subtext, {marginTop: 25}]}>{item.des}</Text>
+            </>
+          ) : (
+            <>
+              <View style={Styles.inputview}>
+                <View style={Styles.row}>
+                  <Images.Countrypicker
+                    width={27}
+                    height={20}
+                    marginLeft={16}
+                    marginTop={16}
+                    marginBottom={16}
+                  />
+                  <Images.Downicon marginLeft={6} />
+                </View>
+
+                <TextInput
+                  style={Styles.input}
+                  keyboardType="numeric"
+                  placeholder="Enter phone number"
+                />
+              </View>
+            </>
+          )}
+        </View>
+      </ScrollView>
+    );
+  }, []);
 
   // const dotWidth =interpolate({
   //   inputRange,
@@ -94,149 +166,126 @@ const Onboarding: React.FC<screenProps> = ({navigation}) => {
   //   extrapolate: 'clamp',
   // });
 
-  const dotStyle1 = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateX: withSpring(activeDotIndex.value * 10), // Adjust the translation distance as needed
-        },
-      ],
-    };
-  });
+  // const dotStyle1 = useAnimatedStyle(() => {
+  //   return {
+  //     transform: [
+  //       {
+  //         translateX: withSpring(activeDotIndex.value * 10), // Adjust the translation distance as needed
+  //       },
+  //     ],
+  //   };
+  // });
   return (
-    <View
-      style={[
-        styles.wrapper,
-
-        {backgroundColor: ind === 3 ? colors.white : ''},
-      ]}>
+    <View style={[styles.container]}>
       <StatusBar
         barStyle="dark-content"
         translucent={true}
         backgroundColor={colors.white}
       />
-      <Swiper
-        loop={false}
-        ref={swiperRef}
-        index={ind}
-        showsPagination={ind === 3 ? false : true}
-        bounces={true}
-        onIndexChanged={(index: number) => indexChanged(index)}
-        paginationStyle={{bottom: 15}}
-        dot={
-          <Animated.View
-            style={[
-              styles.dotstyle,
-              dotStyle1,
-              // {width: dotWidth},
-              // idx === index && styles.dotActive,
-            ]}
-          />
-        }
-        activeDot={
-          <Animated.View
-            style={[
-              styles.activedot,
-              {width: 20},
-              dotStyle1,
-              // idx === index && styles.dotActive,
-            ]}
-          />
-        }
-        showsButtons={false}>
-        <View style={styles.slider1}>
-          <Images.Intro1 width={307} height={359} marginTop={76} />
-          <Text style={styles.text}>AI Property Management</Text>
-          <Text style={styles.subtext}>
-            Our Ai system is designed to mitigate workloads & improve
-            efficiency.
-          </Text>
-        </View>
-        <View style={styles.slider1}>
-          <Images.Intro2 width={307} height={359} marginTop={76} />
-          <Text style={styles.text}>Auto Rent collection</Text>
-          <Text style={styles.subtext}>
-            No Need knock any tenants for rent {'\n'}collection
-          </Text>
-        </View>
-        <View style={styles.slider1}>
-          <Images.Intro3 width={307} height={359} marginTop={76} />
-          <Text style={styles.text}>Tenant Evaluation System</Text>
-          <Text style={styles.subtext}>
-            Evaluate the tenants with preloaded credit score and background
-            info's.
-          </Text>
-        </View>
-        <View style={styles.slider4}>
-          <Images.Intro4 width={326} height={581} marginTop={35} />
-        </View>
-      </Swiper>
-      <View style={{alignItems: 'center', justifyContent: 'center'}}>
-        {ind === 3 ? (
-          <View style={styles.inputview}>
-            <View style={styles.row}>
-              <Images.Countrypicker
-                width={27}
-                height={20}
-                marginLeft={16}
-                marginTop={16}
-                marginBottom={16}
-              />
-              <Images.Downicon marginLeft={6} />
-            </View>
-
-            <TextInput
-              style={styles.input}
-              keyboardType="numeric"
-              placeholder="Enter phone number"
+      {/* <View style={[StyleSheet.absoluteFillObject]}>
+        {data.map((item, index) => {
+          const inputRange = [
+            (index - 1) * width,
+            index * width,
+            (index + 1) * width,
+          ];
+          const colorFade = scrollX.interpolate({
+            inputRange,
+            outputRange: [0, 1, 0],
+          });
+          return (
+            <Animated.View
+              key={index}
+              style={[
+                StyleSheet.absoluteFillObject,
+                { backgroundColor: item.backgroundColor, opacity: colorFade },
+              ]}
             />
-          </View>
-        ) : null}
-        <AppButton
-          onPress={() => {
-            ind === 3
-              ? navigation.navigate('Otp')
-              : swiperRef.current.scrollBy(1);
-          }}
-          bordered={true}
-          size="extralarge"
-          title={ind === 3 ? 'GET STARTED' : 'NEXT'}
-          containerStyle={styles.button}
-        />
-      </View>
-      {/* <View style={{marginTop: 50, marginHorizontal: 20}}> */}
+          );
+        })}
+      </View> */}
 
-      {/* <CustomSelectionControl
-          options={['Option 1', 'Option 2', 'Option 3']}
-          isMultiSelection={false}
-          rightlabel={'Fixed'}
-          isCheck={true}
-          //isRadio={true}
-          isTextright={true}
-          disabled={false}
-          containerStyle={margin(30, 8)}
-          label={'ON'}
-          onValueChange={handleSelection}
-        /> */}
-      {/* <TextAreaComponent
-          isInputFocus={isInputFocus}
-          setIsInputFocus={setIsInputFocus}
-          value={inputValue}
-          setInputValue={setInputValue}
-        /> */}
-      {/* <Button
-          title={'button'}
-          onPress={() => setispagination(!ispagination)}></Button>
-        <AppModal
-          isSubmitbutton={true}
-          iscenter={false}
-          maxheight={530}
-          onDrop={() => setispagination(!ispagination)}
-          visible={ispagination}></AppModal> */}
-      {/* <CardView></CardView> */}
-      {/* </View> */}
+      <Animated.FlatList
+        ref={flatListRef}
+        onViewableItemsChanged={onViewRef.current}
+        viewabilityConfig={viewConfigRef.current}
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled
+        horizontal
+        decelerationRate={'normal'}
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{nativeEvent: {contentOffset: {x: scrollX}}}],
+          {
+            useNativeDriver: false,
+          },
+        )}
+      />
+      {/* {console.log('scrollX::: ', scrollX, activeIndex)} */}
+      {activeIndex !== 3 ? (
+        <LiquidLike
+          data={data}
+          scrollX={scrollX}
+          scrollOffset={scrollX}
+          dotSize={8}
+          inActiveDotOpacity={0.2}
+          activeDotColor={colors.primarycolor}
+          inActiveDotColor={colors.secondarycolor}
+          containerStyle={{marginBottom: 50}}
+        />
+      ) : null}
+
+      <AppButton
+        onPress={() => {
+          gotoNextPage();
+          // activeIndex === 3
+          //   ? navigation.navigate('Otp')
+          //   : swiperRef.current.scrollBy(1);
+        }}
+        bordered={true}
+        size="extralarge"
+        title={activeIndex === 3 ? 'GET STARTED' : 'NEXT'}
+        containerStyle={styles.button}
+      />
+      {/* <View style={[styles.buttonContainer]}>
+        
+        <TouchableOpacity
+          style={[styles.button]}
+          onPress={() => gotoNextPage()}
+        >
+          <Text style={[styles.buttonText]}>Next</Text>
+        </TouchableOpacity>
+        
+      </View> */}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  itemContainer: {
+    width,
+    // justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+  },
+  button: {
+    marginVertical: 20,
+    fontWeight: '700',
+  },
+  buttonText: {
+    color: '#fff',
+  },
+});
 
 export default Onboarding;

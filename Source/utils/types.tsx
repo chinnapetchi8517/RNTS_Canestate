@@ -22,6 +22,22 @@ export interface ButtonInterface
   icon?: boolean;
 }
 
+export interface TopTabHeaderProps {
+  containerStyle?: null | StyleProp<ViewStyle>;
+  dataOptions?: Array<Object>;
+  headerSubContainerStyle?: null | StyleProp<ViewStyle>;
+  onValueChange?: any;
+  value?: number;
+}
+
+export interface SubTopTabProps {
+  containerStyle?: null | StyleProp<ViewStyle>;
+  dataOptions?: Array<Object>;
+  headerSubContainerStyle?: null | StyleProp<ViewStyle>;
+  onValueChange?: any;
+  value?: number;
+}
+
 export interface CustomSelectionControlprops {
   type?: string;
   containerStyle?: ViewStyle;
@@ -87,4 +103,5 @@ export interface Cardviewprops {
 }
 export interface screenProps {
   navigation: any;
+  props: any;
 }

@@ -50,6 +50,7 @@ const Property_Information: React.FC<screenProps> = ({navigation}) => {
   const [amenetiescount, setamenetiescount] = useState(0);
   const [liablecount, setliablecount] = useState(0);
   const [isswitch, setisSwitch] = useState(false);
+  const [selectedImage, setSelectedImage] = useState();
 
   const [selectedOption, setSelectedOption] = useState([]);
   const [isliable, setisLiable] = useState(false);
@@ -90,7 +91,11 @@ const Property_Information: React.FC<screenProps> = ({navigation}) => {
           <View style={{width: '100%'}}>
             <ImageBackground
               style={{height: 218}}
-              source={require('../../../assets/pngImage/property_info.png')}>
+              source={
+                selectedImage == ''
+                  ? require('../../../assets/pngImage/property_info.png')
+                  : {uri: selectedImage}
+              }>
               <View style={{top: 165, right: 10, position: 'absolute'}}>
                 <AppButton
                   onPress={() => openImagePicker()}
